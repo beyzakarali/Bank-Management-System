@@ -25,10 +25,12 @@ def TakePhoto(frame):
 
 def FaceDatasetsReading():
 
+    #Go to known persons photos file.
     os.chdir("/home/buzun/Desktop/CODE/task/knownPersons/")
     print(os.listdir(os.getcwd()))
     knownPersonsPhotos = os.listdir(os.getcwd())
 
+    #Recognition to faces.
     for i in range(len(knownPersonsPhotos)):
         person = face_recognition.load_image_file(
             "/home/buzun/Desktop/CODE/task/knownPersons/" + knownPersonsPhotos[i])
