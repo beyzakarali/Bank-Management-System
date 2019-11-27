@@ -26,12 +26,15 @@
      <height>400</height>
     </size>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(0, 0, 0);</string>
+   </property>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>501</width>
+      <width>500</width>
       <height>400</height>
      </rect>
     </property>
@@ -41,8 +44,11 @@
       <height>400</height>
      </size>
     </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::NoContextMenu</enum>
+    </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(170, 0, 0);</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -60,8 +66,11 @@
        <height>400</height>
       </size>
      </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::NoContextMenu</enum>
+     </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(170, 170, 255);</string>
+      <string notr="true">background-color: rgb(170, 0, 0);</string>
      </property>
      <attribute name="title">
       <string>KİŞİSEL BİLGİLER</string>
@@ -226,8 +235,8 @@
        <rect>
         <x>240</x>
         <y>250</y>
-        <width>51</width>
-        <height>31</height>
+        <width>61</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -302,8 +311,11 @@
        <height>400</height>
       </size>
      </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::NoContextMenu</enum>
+     </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 127);</string>
+      <string notr="true">background-color: rgb(170, 0, 0);</string>
      </property>
      <attribute name="title">
       <string>KAYIT</string>
@@ -418,12 +430,12 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../camera_icon.png</normaloff>../camera_icon.png</iconset>
+        <normaloff>../FOTO/images (2).png</normaloff>../FOTO/images (2).png</iconset>
       </property>
       <property name="iconSize">
        <size>
-        <width>120</width>
-        <height>120</height>
+        <width>270</width>
+        <height>264</height>
        </size>
       </property>
      </widget>
@@ -457,122 +469,6 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
-     <property name="minimumSize">
-      <size>
-       <width>500</width>
-       <height>400</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 170, 255);
-border-top-color: rgb(85, 170, 255);</string>
-     </property>
-     <attribute name="title">
-      <string>BANKALAR</string>
-     </attribute>
-     <widget class="QComboBox" name="comboBox">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>40</y>
-        <width>131</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>HEPSİ</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>A Bankası</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>B Bankası</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>C Bankası</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>D Bankası</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>40</y>
-        <width>141</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Bankalarınızı Seçiniz</string>
-      </property>
-     </widget>
-     <widget class="QListView" name="listView">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>100</y>
-        <width>231</width>
-        <height>131</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>260</y>
-        <width>75</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>ONAYLA</string>
-      </property>
-     </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButton_3">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>320</y>
-        <width>131</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>ANA SAYFA</string>
-      </property>
-     </widget>
-    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -593,6 +489,7 @@ border-top-color: rgb(85, 170, 255);</string>
   </action>
  </widget>
  <tabstops>
+  <tabstop>tabWidget</tabstop>
   <tabstop>lineEdit</tabstop>
   <tabstop>lineEdit_2</tabstop>
   <tabstop>lineEdit_3</tabstop>
@@ -608,11 +505,6 @@ border-top-color: rgb(85, 170, 255);</string>
   <tabstop>lineEdit_8</tabstop>
   <tabstop>pushButton_3</tabstop>
   <tabstop>commandLinkButton_2</tabstop>
-  <tabstop>comboBox</tabstop>
-  <tabstop>listView</tabstop>
-  <tabstop>pushButton_4</tabstop>
-  <tabstop>commandLinkButton_3</tabstop>
-  <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources/>
  <connections>
