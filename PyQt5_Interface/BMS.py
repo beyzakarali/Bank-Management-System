@@ -9,8 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ParaTransferi import Ui_ParaTransferi
-from ödemeler import Ui_Odemler
-from Bağış import Ui_Bagis
+from Odemeler import Ui_Odemler
+from Bagis import Ui_Bagis
 from Fatura import Ui_Fatura
 from Vergi_Resmi import Ui_Vergi_Resmi
 from Ayarlar import Ui_Ayarlar
@@ -18,14 +18,22 @@ from Krediler import Ui_Kredi
 
 
 class Ui_BMS(object):
+    def __init__(self):
+        self.winBMS = QtWidgets.QMainWindow()
+        self.setupUi(self.winBMS)
+        self.winBMS.show()
+
     def Shut_down(self, BMS):
         BMS.destroy()
         exit()
     
     def ParaTransferi_page (self, BMS):
+        self.winBMS.hide()
         self.win = QtWidgets.QMainWindow()
         self.ui = Ui_ParaTransferi()
         self.ui.setupUi(self.win)
+        #hide to window what current opened.
+        
         self.win.show()
         
     def Odemeler_page(self, BMS):
@@ -168,7 +176,6 @@ class Ui_BMS(object):
         self.pushButton_5.setFont(font)
         self.pushButton_5.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_5.setObjectName("pushButton_5")
-        ""
         self.pushButton_5.clicked.connect(self.ParaTransferi_page)
         self.pushButton_8 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_8.setGeometry(QtCore.QRect(330, 210, 171, 41))
@@ -232,11 +239,7 @@ class Ui_BMS(object):
 
 
 if __name__ == "__main__":
-    print("beyzaaaa")
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    BMS = QtWidgets.QMainWindow()
-    ui = Ui_BMS()
-    win2 = ui.setupUi(BMS)
-    BMS.show()
+    BMS = Ui_BMS()
     sys.exit(app.exec_())

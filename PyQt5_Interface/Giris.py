@@ -1,6 +1,8 @@
 # created by beyza at 2019-11-27 11:09.
 # email : beyzakarali4743@gmail.com
 
+# edited by buzun at 2019-11-28 15:46.
+
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from BMS import Ui_BMS
@@ -8,12 +10,20 @@ from KayıtOl import Ui_MainWindow
 
 
 class Ui_LOGIN(object):
+    # Nesne üretildiğinde penceres, hazır şekilde üretilir ve gösterilir.
+    # Tüm penceler tek process altında çalıştığı için __name__ bir kere 
+    # çalışması yeterli olur.
+
+    def __init__(self):
+        self.winLOGIN = QtWidgets.QMainWindow()
+        self.setupUi(self.winLOGIN)
+        self.winLOGIN.show()
+
     def BMS_page (self):
-        self.win =  QtWidgets.QMainWindow()
-        self.ui= Ui_BMS()
-        self.ui.setupUi(self.win)
-        LOGIN.hide()
+        self.winLOGIN.hide()
+        self.win = Ui_BMS()
         self.win.show()
+        
         self.username = self.lineEdit.text()
         self.password = self.lineEdit_2.text()
         print("username:" +  self.username)
@@ -23,7 +33,7 @@ class Ui_LOGIN(object):
         self.win = QtWidgets.QMainWindow()   
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.win)
-        LOGIN.hide()
+        self.winLOGIN.hide()
         self.win.show()
 
     def setupUi(self, LOGIN):
@@ -128,8 +138,5 @@ class Ui_LOGIN(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    LOGIN = QtWidgets.QMainWindow()
-    ui = Ui_LOGIN()
-    ui.setupUi(LOGIN)
-    LOGIN.show()
+    LOGIN = Ui_LOGIN()
     sys.exit(app.exec_())
