@@ -1,40 +1,28 @@
-# created by beyza at 2019-11-27 11:09.
+# created by beyza at 2019-12-01 01:54.
 # email : beyzakarali4743@gmail.com
-
-# edited by buzun at 2019-11-28 15:46.
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from BMS import Ui_BMS
-from KayıtOl import Ui_MainWindow
-
+from KayıtOl import Ui_Record
 
 class Ui_LOGIN(object):
-    # Nesne üretildiğinde penceres, hazır şekilde üretilir ve gösterilir.
-    # Tüm penceler tek process altında çalıştığı için __name__ bir kere 
-    # çalışması yeterli olur.
-
     def __init__(self):
-        self.winLOGIN = QtWidgets.QMainWindow()
-        self.setupUi(self.winLOGIN)
-        self.winLOGIN.show()
+        self.winLogin = QtWidgets.QMainWindow()
+        self.setupUi(self.winLogin)
+        self.winLogin.show()
 
-    def BMS_page (self):
-        self.winLOGIN.hide()
+    def BMS_page (self): 
+        self.winLogin.hide()
         self.win = Ui_BMS()
-        self.win.show()
-        
         self.username = self.lineEdit.text()
         self.password = self.lineEdit_2.text()
         print("username:" +  self.username)
         print("password:" +  self.password)
 
     def Kayit_page (self):
-        self.win = QtWidgets.QMainWindow()   
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self.win)
-        self.winLOGIN.hide()
-        self.win.show()
+        self.winLogin.hide()
+        self.win = Ui_Record()
 
     def setupUi(self, LOGIN):
         LOGIN.setObjectName("LOGIN")
@@ -85,12 +73,14 @@ class Ui_LOGIN(object):
         self.label_4.setObjectName("label_4")
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(210, 230, 141, 20))
+        self.lineEdit.setAutoFillBackground(False)
         self.lineEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.lineEdit.setText("")
         self.lineEdit.setObjectName("lineEdit")
-        
         self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_2.setGeometry(QtCore.QRect(210, 260, 141, 20))
         self.lineEdit_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(120, 340, 141, 16))
@@ -107,12 +97,15 @@ class Ui_LOGIN(object):
         self.commandLinkButton.setStyleSheet("background-color: rgb(170, 0, 0);\n"
 "color: rgb(255, 255, 255);")
         self.commandLinkButton.setObjectName("commandLinkButton")
-        self.commandLinkButton.clicked.connect(self.Kayit_page)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(240, 290, 51, 31))
+        self.pushButton.setGeometry(QtCore.QRect(240, 300, 51, 31))
         self.pushButton.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.pushButton.setAutoDefault(True)
+        self.pushButton.setDefault(False)
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.clicked.connect(self.BMS_page)
+        #self.pushButton.click.connect(self.BMS_page)
+        self.lineEdit_2.returnPressed.connect(self.BMS_page) 
+         #Enter için yazılan bölüm (Auto Default işe yaramadı.)
         LOGIN.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(LOGIN)
         self.statusbar.setObjectName("statusbar")
@@ -138,5 +131,5 @@ class Ui_LOGIN(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    LOGIN = Ui_LOGIN()
+    LOGİN = Ui_LOGIN()
     sys.exit(app.exec_())
