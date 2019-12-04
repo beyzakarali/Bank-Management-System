@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Kredi</class>
- <widget class="QMainWindow" name="Kredi">
+ <class>Credit</class>
+ <widget class="QMainWindow" name="Credit">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -126,7 +126,7 @@
      <widget class="QComboBox" name="comboBox_3">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>240</x>
         <y>170</y>
         <width>141</width>
         <height>31</height>
@@ -146,14 +146,33 @@
        <string>ÇEK</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QCommandLinkButton" name="commandLinkButton_2">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>370</x>
+        <y>330</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ANAMENÜ</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
         <y>90</y>
-        <width>71</width>
+        <width>101</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -330,10 +349,34 @@
        <string>ÖDE</string>
       </property>
      </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButton">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>330</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ANAMENÜ</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>comboBox_3</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>commandLinkButton_2</tabstop>
+  <tabstop>comboBox_4</tabstop>
+  <tabstop>comboBox_5</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>commandLinkButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

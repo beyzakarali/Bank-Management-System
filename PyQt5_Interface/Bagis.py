@@ -1,23 +1,20 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'bağış.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Bagis(object):
+class Ui_Donation(object):
+    def __init__(self):
+        self.winDonation = QtWidgets.QMainWindow()
+        self.setupUi(self.winDonation)
+        self.winDonation.show()
+
     def change_page(self):
         self.tabWidget.setCurrentIndex(1)
 
-    def setupUi(self, Bagis):
-        Bagis.setObjectName("Bagis")
-        Bagis.resize(489, 399)
-        self.centralwidget = QtWidgets.QWidget(Bagis)
+    def setupUi(self, Donation):
+        Donation.setObjectName("Donation")
+        Donation.resize(489, 399)
+        self.centralwidget = QtWidgets.QWidget(Donation)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setGeometry(QtCore.QRect(0, 0, 500, 400))
@@ -122,55 +119,56 @@ class Ui_Bagis(object):
         self.commandLinkButton_9.setGeometry(QtCore.QRect(400, 320, 91, 41))
         self.commandLinkButton_9.setObjectName("commandLinkButton_9")
         self.tabWidget.addTab(self.tab_2, "")
-        Bagis.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(Bagis)
+        Donation.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(Donation)
         self.statusbar.setObjectName("statusbar")
-        Bagis.setStatusBar(self.statusbar)
+        Donation.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Bagis)
+        self.retranslateUi(Donation)
         self.tabWidget.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(Bagis)
-        Bagis.setTabOrder(self.tabWidget, self.commandLinkButton)
-        Bagis.setTabOrder(self.commandLinkButton, self.commandLinkButton_2)
-        Bagis.setTabOrder(self.commandLinkButton_2, self.commandLinkButton_3)
-        Bagis.setTabOrder(self.commandLinkButton_3, self.commandLinkButton_4)
-        Bagis.setTabOrder(self.commandLinkButton_4, self.commandLinkButton_5)
-        Bagis.setTabOrder(self.commandLinkButton_5, self.commandLinkButton_6)
-        Bagis.setTabOrder(self.commandLinkButton_6, self.lineEdit)
-        Bagis.setTabOrder(self.lineEdit, self.lineEdit_2)
-        Bagis.setTabOrder(self.lineEdit_2, self.lineEdit_3)
-        Bagis.setTabOrder(self.lineEdit_3, self.lineEdit_4)
-        Bagis.setTabOrder(self.lineEdit_4, self.textEdit)
-        Bagis.setTabOrder(self.textEdit, self.pushButton)
+        QtCore.QMetaObject.connectSlotsByName(Donation)
+        Donation.setTabOrder(self.tabWidget, self.commandLinkButton)
+        Donation.setTabOrder(self.commandLinkButton, self.commandLinkButton_2)
+        Donation.setTabOrder(self.commandLinkButton_2, self.commandLinkButton_3)
+        Donation.setTabOrder(self.commandLinkButton_3, self.commandLinkButton_4)
+        Donation.setTabOrder(self.commandLinkButton_4, self.commandLinkButton_5)
+        Donation.setTabOrder(self.commandLinkButton_5, self.commandLinkButton_6)
+        Donation.setTabOrder(self.commandLinkButton_6, self.lineEdit)
+        Donation.setTabOrder(self.lineEdit, self.lineEdit_2)
+        Donation.setTabOrder(self.lineEdit_2, self.lineEdit_3)
+        Donation.setTabOrder(self.lineEdit_3, self.lineEdit_4)
+        Donation.setTabOrder(self.lineEdit_4, self.textEdit)
+        Donation.setTabOrder(self.textEdit, self.pushButton)
 
-    def retranslateUi(self, Bagis):
+    def retranslateUi(self, Donation):
         _translate = QtCore.QCoreApplication.translate
-        Bagis.setWindowTitle(_translate("Bagis", "BAĞIŞ"))
-        self.label.setText(_translate("Bagis", "Bağış"))
-        self.commandLinkButton.setText(_translate("Bagis", "AFAD"))
-        self.commandLinkButton_2.setText(_translate("Bagis", "DARÜŞŞAFAKA"))
-        self.commandLinkButton_3.setText(_translate("Bagis", "KIZILAY"))
-        self.commandLinkButton_4.setText(_translate("Bagis", "LÖSEV"))
-        self.commandLinkButton_5.setText(_translate("Bagis", "TSK MEHMETÇİK VAKFI"))
-        self.commandLinkButton_6.setText(_translate("Bagis", "YEŞİLAY"))
-        self.commandLinkButton_7.setText(_translate("Bagis", "GERİ"))
-        self.commandLinkButton_8.setText(_translate("Bagis", "GERİ"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.widget), _translate("Bagis", "Seçim"))
-        self.label_2.setText(_translate("Bagis", "Ad "))
-        self.label_3.setText(_translate("Bagis", "Soyad"))
-        self.label_4.setText(_translate("Bagis", "Tel.no"))
-        self.label_5.setText(_translate("Bagis", "Not"))
-        self.label_6.setText(_translate("Bagis", "Tutar"))
-        self.pushButton.setText(_translate("Bagis", "GÖNDER"))
-        self.commandLinkButton_9.setText(_translate("Bagis", "GERİ"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Bagis", "Bilgiler"))
+        Donation.setWindowTitle(_translate("Donation", "BAĞIŞ"))
+        self.label.setText(_translate("Donation", "Bağış"))
+        self.commandLinkButton.setText(_translate("Donation", "AFAD"))
+        self.commandLinkButton_2.setText(_translate("Donation", "DARÜŞŞAFAKA"))
+        self.commandLinkButton_3.setText(_translate("Donation", "KIZILAY"))
+        self.commandLinkButton_4.setText(_translate("Donation", "LÖSEV"))
+        self.commandLinkButton_5.setText(_translate("Donation", "TSK MEHMETÇİK VAKFI"))
+        self.commandLinkButton_6.setText(_translate("Donation", "YEŞİLAY"))
+        self.commandLinkButton_7.setText(_translate("Donation", "GERİ"))
+        self.commandLinkButton_8.setText(_translate("Donation", "GERİ"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.widget), _translate("Donation", "Seçim"))
+        self.label_2.setText(_translate("Donation", "Ad "))
+        self.label_3.setText(_translate("Donation", "Soyad"))
+        self.label_4.setText(_translate("Donation", "Tel.no"))
+        self.label_5.setText(_translate("Donation", "Not"))
+        self.label_6.setText(_translate("Donation", "Tutar"))
+        self.pushButton.setText(_translate("Donation", "GÖNDER"))
+        self.commandLinkButton_9.setText(_translate("Donation", "GERİ"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Donation", "Bilgiler"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Bagis = QtWidgets.QMainWindow()
-    ui = Ui_Bagis()
-    ui.setupUi(Bagis)
-    Bagis.show()
+    DONATİON =Ui_Donation()
+   # Donation = QtWidgets.QMainWindow()
+   # ui = Ui_Donation()
+   # ui.setupUi(Donation)
+   # Donation.show()
     sys.exit(app.exec_())

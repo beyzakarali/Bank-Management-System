@@ -1,20 +1,14 @@
-# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'BMS.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
+# created by beyza at 2019-11-27 15:49.
+# email : beyzakarali4743@gmail.com
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ParaTransferi import Ui_ParaTransferi
-from Odemeler import Ui_Odemler
-from Bagis import Ui_Bagis
-from Fatura import Ui_Fatura
-from Vergi_Resmi import Ui_Vergi_Resmi
-from Ayarlar import Ui_Ayarlar
-from Krediler import Ui_Kredi
+from ParaTransferi import Ui_MoneyTransfer
+from Odemeler import Ui_Payments
+from Bagis import Ui_Donation
+from Fatura import Ui_Bill
+from Ayarlar import Ui_Settings 
+from Krediler import Ui_Credit
 
 
 class Ui_BMS(object):
@@ -23,39 +17,34 @@ class Ui_BMS(object):
         self.setupUi(self.winBMS)
         self.winBMS.show()
 
-    def Shut_down(self, BMS):
+    def ShutDown(self, BMS):
+        self.winBMS.hide()
         BMS.destroy()
         exit()
     
-    def ParaTransferi_page (self, BMS):
+    def MoneyTransferPage(self, BMS):
         self.winBMS.hide()
-        self.win = QtWidgets.QMainWindow()
-        self.ui = Ui_ParaTransferi()
-        self.ui.setupUi(self.win)
-        #hide to window what current opened.
-        
-        self.win.show()
-        
-    def Odemeler_page(self, BMS):
-        self.win =  QtWidgets.QMainWindow()
-        self.ui = Ui_Odemler()
-        self.ui.setupUi(self.win)
-        #BMS.hide()
-        self.win.show()
+        self.win = Ui_MoneyTransfer()
 
-    def Ayarlar_page(self, BMS):
-        self.win = QtWidgets.QMainWindow()
-        self.ui = Ui_Ayarlar()
-        self.ui.setupUi(self.win)
-        #BMS.hide()
-        self.win.show()
+    def PaymentsPage(self, BMS):
 
-    def Kredi_page(self, BMS):
-        self.win = QtWidgets.QMainWindow()
-        self.ui = Ui_Kredi()
-        self.ui.setupUi(self.win)
-        #BMS.hide()
-        self.win.show()
+        self.winBMS.hide()
+        self.win = Ui_Payments()
+
+    def SettingPage(self, BMS):
+        self.winBMS.hide()
+        self.win = Ui_Settings()
+        print("içerde değl")
+        if( self.win == -1): 
+            print("if içinde")
+            self.winBMS.show()
+          
+
+
+    def CreditPage(self, BMS):
+       self.winBMS.hide()
+       self.win = Ui_Credit()
+ 
 
     def setupUi(self, BMS):
         BMS.setObjectName("BMS")
@@ -130,7 +119,7 @@ class Ui_BMS(object):
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_6.setGeometry(QtCore.QRect(0, 270, 171, 41))
-        self.pushButton_6.clicked.connect(self.Kredi_page)
+        self.pushButton_6.clicked.connect(self.CreditPage)
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -147,7 +136,7 @@ class Ui_BMS(object):
         self.pushButton_7.setFont(font)
         self.pushButton_7.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_7.setObjectName("pushButton_7")
-        self.pushButton_7.clicked.connect(self.Ayarlar_page)
+        self.pushButton_7.clicked.connect(self.SettingPage)
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(116, 100, 81, 61))
         font = QtGui.QFont()
@@ -176,7 +165,8 @@ class Ui_BMS(object):
         self.pushButton_5.setFont(font)
         self.pushButton_5.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_5.setObjectName("pushButton_5")
-        self.pushButton_5.clicked.connect(self.ParaTransferi_page)
+        ""
+        self.pushButton_5.clicked.connect(self.MoneyTransferPage)
         self.pushButton_8 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_8.setGeometry(QtCore.QRect(330, 210, 171, 41))
         font = QtGui.QFont()
@@ -186,7 +176,7 @@ class Ui_BMS(object):
         self.pushButton_8.setFont(font)
         self.pushButton_8.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_8.setObjectName("pushButton_8")
-        self.pushButton_8.clicked.connect(self.Odemeler_page)
+        self.pushButton_8.clicked.connect(self.PaymentsPage)
         self.pushButton_9 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_9.setGeometry(QtCore.QRect(330, 270, 171, 41))
         font = QtGui.QFont()
@@ -205,7 +195,7 @@ class Ui_BMS(object):
         self.pushButton_10.setFont(font)
         self.pushButton_10.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_10.setObjectName("pushButton_10")
-        self.pushButton_10.clicked.connect(self.Shut_down)
+        self.pushButton_10.clicked.connect(self.ShutDown)
         self.pushButton_11 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_11.setGeometry(QtCore.QRect(50, 110, 31, 31))
         self.pushButton_11.setStyleSheet("background-color: rgb(255, 255, 255);")

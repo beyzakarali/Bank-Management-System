@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ParaTransferi</class>
- <widget class="QMainWindow" name="ParaTransferi">
+ <class>MoneyTransfer</class>
+ <widget class="QMainWindow" name="MoneyTransfer">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -35,10 +35,10 @@
      </font>
     </property>
     <property name="contextMenuPolicy">
-     <enum>Qt::NoContextMenu</enum>
+     <enum>Qt::DefaultContextMenu</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -164,14 +164,14 @@
      <widget class="QCommandLinkButton" name="commandLinkButton_2">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>370</x>
         <y>330</y>
-        <width>91</width>
+        <width>121</width>
         <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>GERİ</string>
+       <string>ANA MENÜ</string>
       </property>
      </widget>
     </widget>
@@ -300,17 +300,40 @@
        </rect>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButton">
+     <widget class="QCommandLinkButton" name="commandLinkButton_3">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>370</x>
         <y>330</y>
-        <width>91</width>
+        <width>121</width>
         <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>GERİ</string>
+       <string>ANA MENÜ</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>246</x>
+        <y>100</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>TR</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </widget>
@@ -324,7 +347,9 @@
   <tabstop>lineEdit</tabstop>
   <tabstop>lineEdit_2</tabstop>
   <tabstop>pushButton_3</tabstop>
+  <tabstop>commandLinkButton_2</tabstop>
   <tabstop>comboBox_5</tabstop>
+  <tabstop>lineEdit_5</tabstop>
   <tabstop>lineEdit_3</tabstop>
   <tabstop>lineEdit_4</tabstop>
   <tabstop>pushButton_4</tabstop>

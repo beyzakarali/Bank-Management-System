@@ -1,20 +1,19 @@
-# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Vergi_Resmi.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Vergi_Resmi(object):
-    def setupUi(self, Vergi_Resmi):
-        Vergi_Resmi.setObjectName("Vergi_Resmi")
-        Vergi_Resmi.resize(500, 400)
-        self.centralwidget = QtWidgets.QWidget(Vergi_Resmi)
+class Ui_TaxOfficial(object):
+    def __init__(self):
+        self.winTaxOfficial = QtWidgets.QMainWindow()
+        self.setupUi(self.winTaxOfficial)
+        self.winTaxOfficial.show()
+
+    def setupUi(self, TaxOfficial):
+        TaxOfficial.setObjectName("TaxOfficial")
+        TaxOfficial.resize(500, 400)
+        self.centralwidget = QtWidgets.QWidget(TaxOfficial)
         self.centralwidget.setObjectName("centralwidget")
         self.toolBox = QtWidgets.QToolBox(self.centralwidget)
         self.toolBox.setGeometry(QtCore.QRect(0, 0, 500, 380))
@@ -115,46 +114,43 @@ class Ui_Vergi_Resmi(object):
         self.commandLinkButton_2.setGeometry(QtCore.QRect(410, 290, 81, 41))
         self.commandLinkButton_2.setObjectName("commandLinkButton_2")
         self.toolBox.addItem(self.page_2, "")
-        Vergi_Resmi.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(Vergi_Resmi)
+        TaxOfficial.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(TaxOfficial)
         self.statusbar.setObjectName("statusbar")
-        Vergi_Resmi.setStatusBar(self.statusbar)
+        TaxOfficial.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Vergi_Resmi)
+        self.retranslateUi(TaxOfficial)
         self.toolBox.setCurrentIndex(1)
         self.toolBox.layout().setSpacing(6)
-        QtCore.QMetaObject.connectSlotsByName(Vergi_Resmi)
+        QtCore.QMetaObject.connectSlotsByName(TaxOfficial)
 
-    def retranslateUi(self, Vergi_Resmi):
+    def retranslateUi(self, TaxOfficial):
         _translate = QtCore.QCoreApplication.translate
-        Vergi_Resmi.setWindowTitle(_translate("Vergi_Resmi", "Vergi Ve Resmi Kurum"))
-        self.label.setText(_translate("Vergi_Resmi", "Plaka No"))
-        self.pushButton.setText(_translate("Vergi_Resmi", "Sorgula"))
-        self.label_2.setText(_translate("Vergi_Resmi", "Ödenecek Tutar"))
-        self.pushButton_2.setText(_translate("Vergi_Resmi", "ÖDE"))
-        self.label_3.setText(_translate("Vergi_Resmi", "Vergi Dönemi"))
-        self.comboBox.setItemText(0, _translate("Vergi_Resmi", "Seçiniz"))
-        self.comboBox.setItemText(1, _translate("Vergi_Resmi", "2019"))
-        self.comboBox.setItemText(2, _translate("Vergi_Resmi", "2018"))
-        self.comboBox.setItemText(3, _translate("Vergi_Resmi", "2017"))
-        self.comboBox.setItemText(4, _translate("Vergi_Resmi", "2016"))
-        self.comboBox.setItemText(5, _translate("Vergi_Resmi", "2015"))
-        self.commandLinkButton.setText(_translate("Vergi_Resmi", "GERİ"))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page), _translate("Vergi_Resmi", "Motorlu Taşıtlar Vergisi"))
-        self.label_5.setText(_translate("Vergi_Resmi", "Plaka No"))
-        self.label_6.setText(_translate("Vergi_Resmi", "Tel no"))
-        self.pushButton_3.setText(_translate("Vergi_Resmi", "Sorgula"))
-        self.label_7.setText(_translate("Vergi_Resmi", "Ödenecek Tutar"))
-        self.pushButton_4.setText(_translate("Vergi_Resmi", "ÖDE"))
-        self.commandLinkButton_2.setText(_translate("Vergi_Resmi", "GERİ"))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), _translate("Vergi_Resmi", "Trafik Cezası"))
+        TaxOfficial.setWindowTitle(_translate("TaxOfficial", "Vergi Ve Resmi Kurum"))
+        self.label.setText(_translate("TaxOfficial", "Plaka No"))
+        self.pushButton.setText(_translate("TaxOfficial", "Sorgula"))
+        self.label_2.setText(_translate("TaxOfficial", "Ödenecek Tutar"))
+        self.pushButton_2.setText(_translate("TaxOfficial", "ÖDE"))
+        self.label_3.setText(_translate("TaxOfficial", "Vergi Dönemi"))
+        self.comboBox.setItemText(0, _translate("TaxOfficial", "Seçiniz"))
+        self.comboBox.setItemText(1, _translate("TaxOfficial", "2019"))
+        self.comboBox.setItemText(2, _translate("TaxOfficial", "2018"))
+        self.comboBox.setItemText(3, _translate("TaxOfficial", "2017"))
+        self.comboBox.setItemText(4, _translate("TaxOfficial", "2016"))
+        self.comboBox.setItemText(5, _translate("TaxOfficial", "2015"))
+        self.commandLinkButton.setText(_translate("TaxOfficial", "GERİ"))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page), _translate("TaxOfficial", "Motorlu Taşıtlar Vergisi"))
+        self.label_5.setText(_translate("TaxOfficial", "Plaka No"))
+        self.label_6.setText(_translate("TaxOfficial", "Tel no"))
+        self.pushButton_3.setText(_translate("TaxOfficial", "Sorgula"))
+        self.label_7.setText(_translate("TaxOfficial", "Ödenecek Tutar"))
+        self.pushButton_4.setText(_translate("TaxOfficial", "ÖDE"))
+        self.commandLinkButton_2.setText(_translate("TaxOfficial", "GERİ"))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), _translate("TaxOfficial", "Trafik Cezası"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Vergi_Resmi = QtWidgets.QMainWindow()
-    ui = Ui_Vergi_Resmi()
-    ui.setupUi(Vergi_Resmi)
-    Vergi_Resmi.show()
+    TAX_OFFİCİAL = Ui_TaxOfficial()
     sys.exit(app.exec_())
