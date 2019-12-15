@@ -1,7 +1,8 @@
 # created by buzun at 2019-12-03 19:49.
 # email : batuuzun08@gmail.com
 
-from ControllerBMS import User
+from ControllerBMS.UserCls import User
+
 
 
 class Admin:
@@ -11,14 +12,11 @@ class Admin:
         self.__userName = userName
         self.__password = password
         self.__user = User()
-    
-    #super key araştır.
 
     #getter and setter functions
 
-    def setID():
-        pass
-        #static id değişkeni üret 
+    def getID(self):
+        return self.__ID
 
     #veritabanından tüm kullanıcıları listeleyecek.
     def viewAllUser(self):
