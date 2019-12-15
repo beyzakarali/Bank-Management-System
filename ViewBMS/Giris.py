@@ -3,27 +3,70 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from BMS import Ui_BMS
-from KayıtOl import Ui_Record
+from PyQt5.QtWidgets import QMessageBox
+from ViewBMS.BMS import Ui_BMS
+from ViewBMS.KayitOl import Ui_Record
+from ModelBMS import connect as cnt
+from ModelBMS.database import Database as db
+from mysql.connector import Error
+from ControllerBMS.UserCls import User
 
+#Giriş sayfası GUI
 class Ui_LOGIN(object):
+    #Yapıcı fonksiyon
     def __init__(self):
+        print("Giris.py __init__ ")
         self.winLogin = QtWidgets.QMainWindow()
         self.setupUi(self.winLogin)
         self.winLogin.show()
+        self.onlineUser : User
+        
 
-    def BMS_page (self): 
+    def createUser(self, informationsOfUser):
+        self.onlineUser = User(informationsOfUser)
+        return self.onlineUser
+        
+    #Anamenü sayfasına aktarma
+    def BMS_page (self, user : User): 
         self.winLogin.hide()
-        self.win = Ui_BMS()
-        self.username = self.lineEdit.text()
-        self.password = self.lineEdit_2.text()
-        print("username:" +  self.username)
-        print("password:" +  self.password)
+        self.win = Ui_BMS(user)
 
+    #Kayıt sayfasına aktarma
     def Kayit_page (self):
         self.winLogin.hide()
-        self.win = Ui_Record()
+        self.win = Ui_Record(self.winLogin)
 
+    #Hata giriş pop-up
+    def showDialog(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("HATA")
+        msg.setText("Hatalı giriş!")
+        msg.setIcon(QMessageBox.Warning)
+        msg.setStandardButtons(QMessageBox.Retry)
+        msg.setDefaultButton(QMessageBox.Retry)
+        msg.setInformativeText("Lütfen tekrar deneyin.")
+        x = msg.exec_()
+
+    #Kimlik doğrulama
+    def authentication(self):
+        username = self.lineEdit.text()
+        password = self.lineEdit_2.text()
+        query = "SELECT * FROM customer WHERE Username = %s AND password = %s "
+        try:
+            informationsOfUser = db.Query(db, query, username, password)
+            print(informationsOfUser)
+        except Error as msgError:
+            print("Giris.py authentication HATA")
+            print(msgError)
+        
+        if(informationsOfUser == []):
+            self.showDialog()
+        else:
+            print("Hoşgeldiniz..\n\n")
+            a =  self.createUser(informationsOfUser)
+            self.BMS_page(a)
+                   
+    #Giris sayfası yapısı    
     def setupUi(self, LOGIN):
         LOGIN.setObjectName("LOGIN")
         LOGIN.setEnabled(True)
@@ -82,6 +125,10 @@ class Ui_LOGIN(object):
         self.lineEdit_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_2.setObjectName("lineEdit_2")
+        
+        #Enter ile giris.
+        self.lineEdit_2.returnPressed.connect(self.authentication)
+
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(120, 340, 141, 16))
         font = QtGui.QFont()
@@ -90,22 +137,20 @@ class Ui_LOGIN(object):
         font.setWeight(50)
         self.label_5.setFont(font)
         self.label_5.setStyleSheet("background-color: rgb(170, 0, 0);\n"
-"color: rgb(255, 255, 255);")
+        "color: rgb(255, 255, 255);")
         self.label_5.setObjectName("label_5")
         self.commandLinkButton = QtWidgets.QCommandLinkButton(self.centralwidget)
         self.commandLinkButton.setGeometry(QtCore.QRect(260, 330, 185, 41))
         self.commandLinkButton.setStyleSheet("background-color: rgb(170, 0, 0);\n"
-"color: rgb(255, 255, 255);")
+        "color: rgb(255, 255, 255);")
         self.commandLinkButton.setObjectName("commandLinkButton")
+        self.commandLinkButton.clicked.connect(self.Kayit_page)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(240, 300, 51, 31))
         self.pushButton.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton.setAutoDefault(True)
-        self.pushButton.setDefault(False)
         self.pushButton.setObjectName("pushButton")
-        #self.pushButton.click.connect(self.BMS_page)
-        self.lineEdit_2.returnPressed.connect(self.BMS_page) 
-         #Enter için yazılan bölüm (Auto Default işe yaramadı.)
+        self.pushButton.clicked.connect(self.authentication)
         LOGIN.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(LOGIN)
         self.statusbar.setObjectName("statusbar")
@@ -131,5 +176,5 @@ class Ui_LOGIN(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    LOGİN = Ui_LOGIN()
+    LOGIN = Ui_LOGIN()
     sys.exit(app.exec_())
