@@ -4,10 +4,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Credit(object):
-    def __init__(self):
+    def __init__(self, prevWin : QtWidgets.QMainWindow = None):
         self.winCredit = QtWidgets.QMainWindow()
         self.setupUi(self.winCredit)
         self.winCredit.show()
+        self.prevWin = prevWin
+
+    def passPrevWin(self):
+        self.winCredit.close()
+        self.prevWin.show()
 
     def setupUi(self, Credit):
         Credit.setObjectName("Credit")
@@ -56,6 +61,7 @@ class Ui_Credit(object):
         self.commandLinkButton_2 = QtWidgets.QCommandLinkButton(self.tab)
         self.commandLinkButton_2.setGeometry(QtCore.QRect(370, 330, 131, 41))
         self.commandLinkButton_2.setObjectName("commandLinkButton_2")
+        self.commandLinkButton_2.clicked.connect(self.passPrevWin)
         self.label_8 = QtWidgets.QLabel(self.tab)
         self.label_8.setGeometry(QtCore.QRect(260, 90, 101, 51))
         self.label_8.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -113,6 +119,7 @@ class Ui_Credit(object):
         self.commandLinkButton = QtWidgets.QCommandLinkButton(self.widget)
         self.commandLinkButton.setGeometry(QtCore.QRect(370, 330, 121, 41))
         self.commandLinkButton.setObjectName("commandLinkButton")
+        self.commandLinkButton.clicked.connect(self.passPrevWin)
         self.tabWidget.addTab(self.widget, "")
         Credit.setCentralWidget(self.centralwidget)
 

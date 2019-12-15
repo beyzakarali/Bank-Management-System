@@ -1,20 +1,16 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'Fatura.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
 
 
+#ANA MENÜ butonu eksik.
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Bill(object):
-    def __init__(self):
+    def __init__(self, prevWin : QtWidgets.QMainWindow = None):
         self.winBill = QtWidgets.QMainWindow()
         self.setupUi(self.winBill)
         self.winBill.show()
+        self.prevWin = prevWin
+
     def setupUi(self, Bill):
         Bill.setObjectName("Bill")
         Bill.resize(500, 405)
@@ -240,5 +236,5 @@ class Ui_Bill(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    BİLL = Ui_Bill()
+    BILL = Ui_Bill()
     sys.exit(app.exec_())

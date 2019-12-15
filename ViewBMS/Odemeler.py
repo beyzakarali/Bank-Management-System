@@ -4,19 +4,24 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Bagis import Ui_Donation
-from Fatura import Ui_Bill
-from Vergi_Resmi import Ui_TaxOfficial
+from ViewBMS.Bagis import Ui_Donation
+from ViewBMS.Fatura import Ui_Bill
+from ViewBMS.Vergi_Resmi import Ui_TaxOfficial
 
 class Ui_Payments(object):
-    def __init__(self):
+    def __init__(self, prevWin : QtWidgets.QMainWindow = None):
         self.winPayments = QtWidgets.QMainWindow()
         self.setupUi(self.winPayments)
         self.winPayments.show()
+        self.prevWin = prevWin
 
     def DonationPage(self):
         self.winPayments.hide()
         self.win = Ui_Donation()
+
+    def passPrevWin(self):
+        self.winPayments.close()
+        self.prevWin.show()
 
     def BillPage(self):
         self.winPayments.hide()
@@ -55,7 +60,7 @@ class Ui_Payments(object):
         self.commandLinkButton_5 = QtWidgets.QCommandLinkButton(self.centralwidget)
         self.commandLinkButton_5.setGeometry(QtCore.QRect(370, 350, 121, 41))
         self.commandLinkButton_5.setObjectName("commandLinkButton_5")
-       # self.commandLinkButton_5.clicked.connect()
+        self.commandLinkButton_5.clicked.connect(self.passPrevWin)
         Payments.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Payments)

@@ -8,13 +8,22 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from ModelBMS.database import Database
 
 class Ui_MoneyTransfer(object):
-    def __init__(self):
+    def __init__(self, prevWin = None):
         self.winMoneyTransfer = QtWidgets.QMainWindow()
         self.setupUi(self.winMoneyTransfer)
         self.winMoneyTransfer.show()
+        self.prevWin = prevWin
+
+    def virman(self):
+        pass
+
+    def passPrevWin(self):
+        self.winMoneyTransfer.close()
+        self.prevWin.show()
+
 
     def setupUi(self, MoneyTransfer):
         MoneyTransfer.setObjectName("MoneyTransfer")
@@ -65,6 +74,7 @@ class Ui_MoneyTransfer(object):
         self.commandLinkButton_2 = QtWidgets.QCommandLinkButton(self.tab)
         self.commandLinkButton_2.setGeometry(QtCore.QRect(370, 330, 121, 41))
         self.commandLinkButton_2.setObjectName("commandLinkButton_2")
+        self.commandLinkButton_2.clicked.connect(self.passPrevWin)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")

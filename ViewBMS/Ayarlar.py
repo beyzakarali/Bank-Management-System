@@ -4,25 +4,26 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets 
 
-
+#ANA MENU butonunu teke düşür. Gereksiz buton
+#widget alanını küçültürsek altta tek bir buton olabilir.
+#passPrevWin fonksiyonunu kullan.
 
 class Ui_Settings(object):
-    
-    def MainMenu(self):
-      
-        self.winSettings.close()
-        print("return -1")
-        #return(-1)
-        #self.winSettings.exit(-1) 
 
-    def write(self):
-        print("sınırlandırmalar var.")
-        
-    def __init__(self):
+    def __init__(self, prevWin : QtWidgets.QMainWindow = None):
         self.winSettings = QtWidgets.QMainWindow()
-        self.close1 = 0
         self.setupUi(self.winSettings)
         self.winSettings.show()
+        self.prevWin = prevWin
+
+   
+    def write(self):
+        print("sınırlandırmalar var.")
+
+    def passPrevWin(self):
+        self.winSettings.close()
+        self.prevWin.show()
+        
       
 
     def setupUi(self, Settings):
@@ -31,7 +32,7 @@ class Ui_Settings(object):
         self.centralwidget = QtWidgets.QWidget(Settings)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 501, 391))
+        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 501, 345))
         self.tabWidget.setObjectName("tabWidget")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -69,7 +70,7 @@ class Ui_Settings(object):
         self.commandLinkButton = QtWidgets.QCommandLinkButton(self.tab_2)
         self.commandLinkButton.setGeometry(QtCore.QRect(370, 320, 121, 41))
         self.commandLinkButton.setObjectName("commandLinkButton")
-        self.commandLinkButton.clicked.connect(self.MainMenu)
+        #self.commandLinkButton.clicked.connect(self.MainMenu)
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
@@ -109,7 +110,7 @@ class Ui_Settings(object):
         self.commandLinkButton_5.setGeometry(QtCore.QRect(370, 320, 121, 41))
         self.commandLinkButton_5.setObjectName("commandLinkButton_5")
         self.pushButton_5 = QtWidgets.QPushButton(self.tab_3)
-        self.pushButton_5.setGeometry(QtCore.QRect(200, 280, 75, 41))
+        self.pushButton_5.setGeometry(QtCore.QRect(200, 260, 75, 41))
         self.pushButton_5.setObjectName("pushButton_5")
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_4 = QtWidgets.QWidget()
@@ -182,9 +183,14 @@ class Ui_Settings(object):
         self.pushButton_4 = QtWidgets.QPushButton(self.tab_5)
         self.pushButton_4.setGeometry(QtCore.QRect(280, 270, 75, 41))
         self.pushButton_4.setObjectName("pushButton_4")
-        self.commandLinkButton_3 = QtWidgets.QCommandLinkButton(self.tab_5)
-        self.commandLinkButton_3.setGeometry(QtCore.QRect(370, 320, 121, 41))
+
+
+        self.commandLinkButton_3 = QtWidgets.QCommandLinkButton(self.centralwidget)
+        self.commandLinkButton_3.setGeometry(QtCore.QRect(370, 350, 121, 41))
         self.commandLinkButton_3.setObjectName("commandLinkButton_3")
+        self.commandLinkButton_3.clicked.connect(self.passPrevWin)
+
+
         self.tabWidget.addTab(self.tab_5, "")
         Settings.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Settings)
