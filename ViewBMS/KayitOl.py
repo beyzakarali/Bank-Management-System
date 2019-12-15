@@ -1,20 +1,64 @@
-# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'KayıtOl.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
+#Telefon numarası eklenecek.
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from ModelBMS.database import Database as db
 
+NEXT_TAB = 1
 
 class Ui_Record(object):
-    def __init__(self):
+    def __init__(self, prevWin = None):
         self.winRecord = QtWidgets.QMainWindow()
         self.setupUi(self.winRecord)
         self.winRecord.show()
+        self.prevWin = prevWin
+
+    #Giris sayfasına aktarma
+    def Giris_page (self):
+        print("giris page....")
+        self.winRecord.hide()
+        self.win = Ui_LOGIN()
+
+    def changeTab(self):
+        index = self.tabWidget.currentIndex()
+        self.tabWidget.setCurrentIndex(index + NEXT_TAB)
+
+    def insertUser(self):
+        #eğer başarılı olursa giris_page çalıştır.
+        userInfo = self.getUserInfo()
+        for i in userInfo:
+            print(i)
+        db.Query(db, 
+        "INSERT INTO customer(AdminId, Name, Surname, TCNo, DateOfBirth, Mail, Gender, ProfilePhoto, Username, Password) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        , userInfo)
+        print("insertUser function....")
+        self.Giris_page()
+
+    def getUserInfo(self):
+        userInfo = []
+        userInfo.append("2")
+        userInfo.append(self.lineEdit.text())
+        userInfo.append(self.lineEdit_2.text())
+        userInfo.append(self.lineEdit_3.text())
+
+         #yıl-ay-gün | yıl.ay.gün formatıyla olmalı
+        userInfo.append(self.lineEdit_4.text())
+
+        userInfo.append(self.lineEdit_5.text())
+        userInfo.append(self.getGender())
+        userInfo.append("photoname")
+        userInfo.append(self.lineEdit_6.text())
+        if self.lineEdit_7.text() == self.lineEdit_8.text():
+            userInfo.append(self.lineEdit_7.text())
+
+        return userInfo
+
+    def getGender(self):
+        if self.radioButton.isChecked() == True:
+            return "K"
+        else:
+            return "E"
+
 
     def setupUi(self, Record):
         Record.setObjectName("Record")
@@ -86,13 +130,11 @@ class Ui_Record(object):
         self.lineEdit_5.setGeometry(QtCore.QRect(200, 180, 113, 20))
         self.lineEdit_5.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.lineEdit_5.setObjectName("lineEdit_5")
-        self.pushButton = QtWidgets.QPushButton(self.tab)
-        self.pushButton.setGeometry(QtCore.QRect(240, 250, 61, 41))
-        self.pushButton.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.pushButton.setObjectName("pushButton")
+       
         self.commandLinkButton = QtWidgets.QCommandLinkButton(self.tab)
         self.commandLinkButton.setGeometry(QtCore.QRect(390, 330, 101, 41))
         self.commandLinkButton.setObjectName("commandLinkButton")
+        self.commandLinkButton.clicked.connect(self.changeTab)
         self.radioButton = QtWidgets.QRadioButton(self.tab)
         self.radioButton.setGeometry(QtCore.QRect(200, 220, 82, 21))
         self.radioButton.setObjectName("radioButton")
@@ -131,6 +173,8 @@ class Ui_Record(object):
         self.lineEdit_7.setGeometry(QtCore.QRect(180, 200, 113, 20))
         self.lineEdit_7.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.lineEdit_7.setObjectName("lineEdit_7")
+        self.lineEdit_7.setEchoMode(QtWidgets.QLineEdit.Password)
+
         self.label_9 = QtWidgets.QLabel(self.tab_3)
         self.label_9.setGeometry(QtCore.QRect(20, 240, 91, 21))
         font = QtGui.QFont()
@@ -141,6 +185,8 @@ class Ui_Record(object):
         self.lineEdit_8.setGeometry(QtCore.QRect(180, 240, 113, 20))
         self.lineEdit_8.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.lineEdit_8.setObjectName("lineEdit_8")
+        self.lineEdit_8.setEchoMode(QtWidgets.QLineEdit.Password)
+
         self.pushButton_2 = QtWidgets.QPushButton(self.tab_3)
         self.pushButton_2.setGeometry(QtCore.QRect(140, 10, 181, 121))
         self.pushButton_2.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -154,9 +200,8 @@ class Ui_Record(object):
         self.pushButton_3.setGeometry(QtCore.QRect(210, 290, 75, 41))
         self.pushButton_3.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_3.setObjectName("pushButton_3")
-        self.commandLinkButton_2 = QtWidgets.QCommandLinkButton(self.tab_3)
-        self.commandLinkButton_2.setGeometry(QtCore.QRect(380, 320, 111, 41))
-        self.commandLinkButton_2.setObjectName("commandLinkButton_2")
+        self.pushButton_3.clicked.connect(self.insertUser)
+      
         self.tabWidget.addTab(self.tab_3, "")
         Record.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Record)
@@ -171,10 +216,7 @@ class Ui_Record(object):
 
         self.retranslateUi(Record)
         self.tabWidget.setCurrentIndex(0)
-        self.lineEdit_5.textEdited['QString'].connect(self.pushButton.click)
-        self.lineEdit_4.textChanged['QString'].connect(self.pushButton.click)
-        self.pushButton.clicked.connect(self.lineEdit_3.copy)
-        QtCore.QMetaObject.connectSlotsByName(Record)
+        
         Record.setTabOrder(self.tabWidget, self.lineEdit)
         Record.setTabOrder(self.lineEdit, self.lineEdit_2)
         Record.setTabOrder(self.lineEdit_2, self.lineEdit_3)
@@ -182,14 +224,13 @@ class Ui_Record(object):
         Record.setTabOrder(self.lineEdit_4, self.lineEdit_5)
         Record.setTabOrder(self.lineEdit_5, self.radioButton)
         Record.setTabOrder(self.radioButton, self.radioButton_2)
-        Record.setTabOrder(self.radioButton_2, self.pushButton)
-        Record.setTabOrder(self.pushButton, self.commandLinkButton)
+       
         Record.setTabOrder(self.commandLinkButton, self.pushButton_2)
         Record.setTabOrder(self.pushButton_2, self.lineEdit_6)
         Record.setTabOrder(self.lineEdit_6, self.lineEdit_7)
         Record.setTabOrder(self.lineEdit_7, self.lineEdit_8)
         Record.setTabOrder(self.lineEdit_8, self.pushButton_3)
-        Record.setTabOrder(self.pushButton_3, self.commandLinkButton_2)
+        
 
     def retranslateUi(self, Record):
         _translate = QtCore.QCoreApplication.translate
@@ -198,18 +239,18 @@ class Ui_Record(object):
         self.label_2.setText(_translate("Record", "Soyad "))
         self.label_3.setText(_translate("Record", "T.C. No"))
         self.label_4.setText(_translate("Record", "Doğum Tarihi"))
-        self.label_5.setText(_translate("Record", "Mail Adres"))
-        self.pushButton.setText(_translate("Record", "GİR"))
+        self.label_5.setText(_translate("Record", "Email"))
+       
         self.commandLinkButton.setText(_translate("Record", "İLERLE"))
-        self.radioButton.setText(_translate("Record", "KADIN"))
-        self.radioButton_2.setText(_translate("Record", "ERKEK"))
+        self.radioButton.setText(_translate("Record", "Kadın"))
+        self.radioButton_2.setText(_translate("Record", "Erkek"))
         self.label_7.setText(_translate("Record", "Cinsiyet"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Record", "KİŞİSEL BİLGİLER"))
         self.label_6.setText(_translate("Record", "Kullanıcı Adı"))
         self.label_8.setText(_translate("Record", "Şifre"))
         self.label_9.setText(_translate("Record", "Tekrar Şifre"))
         self.pushButton_3.setText(_translate("Record", "KAYDOL"))
-        self.commandLinkButton_2.setText(_translate("Record", "İLERLE"))
+        
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Record", "KAYIT"))
         self.actionmoney1.setText(_translate("Record", "money1"))
         self.actionmoney1.setToolTip(_translate("Record", "image"))
