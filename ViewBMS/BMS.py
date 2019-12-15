@@ -3,49 +3,56 @@
 # email : beyzakarali4743@gmail.com
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ParaTransferi import Ui_MoneyTransfer
-from Odemeler import Ui_Payments
-from Bagis import Ui_Donation
-from Fatura import Ui_Bill
-from Ayarlar import Ui_Settings 
-from Krediler import Ui_Credit
+from ViewBMS.ParaTransferi import Ui_MoneyTransfer
+from ViewBMS.Odemeler import Ui_Payments
+from ViewBMS.Bagis import Ui_Donation
+from ViewBMS.Fatura import Ui_Bill
+from ViewBMS.Ayarlar import Ui_Settings 
+from ViewBMS.Krediler import Ui_Credit
+from ModelBMS.database import Database as db
+from ControllerBMS.UserCls import User as usr
 
 
+#Ana menü sayfası
 class Ui_BMS(object):
-    def __init__(self):
+    def __init__(self, User : usr):
+        self.onlineUser = User
         self.winBMS = QtWidgets.QMainWindow()
         self.setupUi(self.winBMS)
         self.winBMS.show()
 
-    def ShutDown(self, BMS):
-        self.winBMS.hide()
-        BMS.destroy()
-        exit()
+    #Güvenli çıkış.
+    def ShutDown(self):
+        self.winBMS.close()
     
-    def MoneyTransferPage(self, BMS):
+    def MoneyTransferPage(self):
         self.winBMS.hide()
-        self.win = Ui_MoneyTransfer()
+        self.win = Ui_MoneyTransfer(self.winBMS)
 
-    def PaymentsPage(self, BMS):
-
+    def PaymentsPage(self):
         self.winBMS.hide()
-        self.win = Ui_Payments()
+        self.win = Ui_Payments(self.winBMS)
 
-    def SettingPage(self, BMS):
+    def SettingPage(self):
         self.winBMS.hide()
-        self.win = Ui_Settings()
-        print("içerde değl")
-        if( self.win == -1): 
-            print("if içinde")
-            self.winBMS.show()
+        self.win = Ui_Settings(self.winBMS)
           
-
-
-    def CreditPage(self, BMS):
+    def CreditPage(self):
        self.winBMS.hide()
-       self.win = Ui_Credit()
+       self.win = Ui_Credit(self.winBMS)
  
 
+    def getUsersBank(self):
+        userID = str(self.onlineUser.getID())
+        banks = db.Query(db, "SELECT DISTINCT bank.Name FROM bank INNER JOIN account ON account.BankId = bank.ID WHERE account.customerID = %s"
+                 , userID)
+        self.viewBanks(banks)
+    
+    def viewBanks(self, banks):
+        for bank in banks:
+            self.comboBox.addItem(bank[0])
+
+    
     def setupUi(self, BMS):
         BMS.setObjectName("BMS")
         BMS.resize(500, 400)
@@ -53,13 +60,16 @@ class Ui_BMS(object):
         BMS.setStyleSheet("background-color: rgb(170, 0, 0);")
         self.centralwidget = QtWidgets.QWidget(BMS)
         self.centralwidget.setObjectName("centralwidget")
+
+
+        #------------------------------
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(160, 10, 181, 22))
         self.comboBox.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
+        self.getUsersBank()
+        #------------------------------
+
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(120, 60, 81, 16))
         font = QtGui.QFont()
@@ -81,7 +91,8 @@ class Ui_BMS(object):
         self.pushButton.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../FOTO/DOLAR.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        iconPath = "C:/Users/batu_/source/repos/BankManagementSystem/BankManagementSystem/icons/dolar.svg"
+        icon.addPixmap(QtGui.QPixmap(iconPath), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon)
         self.pushButton.setIconSize(QtCore.QSize(25, 50))
         self.pushButton.setObjectName("pushButton")
@@ -165,8 +176,10 @@ class Ui_BMS(object):
         self.pushButton_5.setFont(font)
         self.pushButton_5.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_5.setObjectName("pushButton_5")
-        ""
+
+        #lambda : isimsiz fonksiyon üretmeyi sağlar.
         self.pushButton_5.clicked.connect(self.MoneyTransferPage)
+
         self.pushButton_8 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_8.setGeometry(QtCore.QRect(330, 210, 171, 41))
         font = QtGui.QFont()
@@ -216,13 +229,12 @@ class Ui_BMS(object):
         _translate = QtCore.QCoreApplication.translate
         BMS.setWindowTitle(_translate("BMS", "BMS"))
         self.comboBox.setItemText(0, _translate("BMS", "BANKA SEÇİNİZ"))
-        self.comboBox.setItemText(1, _translate("BMS", "A"))
-        self.comboBox.setItemText(2, _translate("BMS", "New Item"))
+
         self.label.setText(_translate("BMS", "BAKİYE"))
         self.label_2.setText(_translate("BMS", " BORÇLAR"))
+        self.pushButton_5.setText(_translate("BMS", "PARA TRANSFERLERİ"))
         self.pushButton_6.setText(_translate("BMS", "KREDİ İŞLEMLERİ"))
         self.pushButton_7.setText(_translate("BMS", "AYARLAR"))
-        self.pushButton_5.setText(_translate("BMS", "PARA TRANSFERLERİ"))
         self.pushButton_8.setText(_translate("BMS", "ÖDEMELER"))
         self.pushButton_9.setText(_translate("BMS", "HESAP HAREKETLERİ"))
         self.pushButton_10.setText(_translate("BMS", "GÜVENLİ ÇIKIŞ"))
