@@ -151,7 +151,7 @@ CREATE TABLE `customer` (
   `DateOfBirth` date NOT NULL,
   `Mail` varchar(20) COLLATE utf8_turkish_ci NOT NULL,
   `Gender` varchar(5) COLLATE utf8_turkish_ci NOT NULL,
-  `ProfilePhoto` varchar(20) COLLATE utf8_turkish_ci NOT NULL,
+  `ProfilePhoto` varchar(20) COLLATE utf8_turkish_ci,
   `Username` varchar(10) COLLATE utf8_turkish_ci NOT NULL,
   `Password` varchar(20) COLLATE utf8_turkish_ci NOT NULL,
   `Phone` varchar(10) COLLATE utf8_turkish_ci NOT NULL

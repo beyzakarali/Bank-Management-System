@@ -81,7 +81,23 @@ class Database:
            
         return result
 
+    #random Customer ekleme
+    def randCustomer():
+        try:
+            connection = getDbConnection()
+            cursor = connection.cursor()
+            with open("customer.txt", "r") as dosya:
+                for query in dosya:
+                    result = cursor.execute(query)
+                    connection.commit()
 
+        except mysql.connector.Error as error:
+            print("Failed to insert Customer table {}".format(error))
+        finally:
+            if (connection.is_connected()):
+                cursor.close()
+                connection.close()
+                print("Mysql connection is closed")
 
         
 
