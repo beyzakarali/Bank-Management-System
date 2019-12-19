@@ -7,9 +7,10 @@ from PyQt5.QtWidgets import QMessageBox
 from ViewBMS.BMS import Ui_BMS
 from ViewBMS.KayitOl import Ui_Record
 from ModelBMS import connect as cnt
-from ModelBMS.database import Database as db
+from ModelBMS.database import Database
 from mysql.connector import Error
 from ControllerBMS.UserCls import User
+
 
 #Giriş sayfası GUI
 class Ui_LOGIN(object):
@@ -19,25 +20,25 @@ class Ui_LOGIN(object):
         self.winLogin = QtWidgets.QMainWindow()
         self.setupUi(self.winLogin)
         self.winLogin.show()
-        self.onlineUser : User
-        
+        self.onlineUser = User
+        self.db = Database
 
-    def createUser(self, informationsOfUser):
-        self.onlineUser = User(informationsOfUser)
-        return self.onlineUser
+    #def createUser(self, informationsOfUser):
+    #    self.onlineUser = User(informationsOfUser)
+    #    return self.onlineUser
         
     #Anamenü sayfasına aktarma
-    def BMS_page (self, user : User): 
+    def BMSPage (self, user : User): 
         self.winLogin.hide()
         self.win = Ui_BMS(user)
 
     #Kayıt sayfasına aktarma
-    def Kayit_page (self):
+    def LoginPage (self):
         self.winLogin.hide()
         self.win = Ui_Record(self.winLogin)
 
     #Hata giriş pop-up
-    def showDialog(self):
+    def showErrorDialog(self):
         msg = QMessageBox()
         msg.setWindowTitle("HATA")
         msg.setText("Hatalı giriş!")
@@ -47,24 +48,27 @@ class Ui_LOGIN(object):
         msg.setInformativeText("Lütfen tekrar deneyin.")
         x = msg.exec_()
 
-    #Kimlik doğrulama
+    #username and password entered from interface
+    def getUsernamePassword(self):
+        return self.lineEdit.text(), self.lineEdit_2.text()
+
     def authentication(self):
-        username = self.lineEdit.text()
-        password = self.lineEdit_2.text()
-        query = "SELECT * FROM customer WHERE Username = %s AND password = %s "
-        try:
-            informationsOfUser = db.Query(db, query, username, password)
-            print(informationsOfUser)
-        except Error as msgError:
-            print("Giris.py authentication HATA")
-            print(msgError)
+        username, password = self.getUsernamePassword()
+        userInfo = self.onlineUser.getUserInformations(User, username, password)
+        self.onlineUser = User.createUser(User, userInfo)
+        #self.onlineUser = self.onlineUser.createUser(userInfo)
+        self.BMSPage(self.onlineUser)
         
-        if(informationsOfUser == []):
-            self.showDialog()
-        else:
-            print("Hoşgeldiniz..\n\n")
-            a =  self.createUser(informationsOfUser)
-            self.BMS_page(a)
+    #def aa(self):
+    #    self.onlineUser = self.db.getUserInformations(username, password)
+        
+    #    if (self.onlineUser != False):
+    #        self.BMSPage(self.onlineUser)
+    #    else:
+    #        self.showErrorDiaglog()
+
+
+
                    
     #Giris sayfası yapısı    
     def setupUi(self, LOGIN):
@@ -144,7 +148,7 @@ class Ui_LOGIN(object):
         self.commandLinkButton.setStyleSheet("background-color: rgb(170, 0, 0);\n"
         "color: rgb(255, 255, 255);")
         self.commandLinkButton.setObjectName("commandLinkButton")
-        self.commandLinkButton.clicked.connect(self.Kayit_page)
+        self.commandLinkButton.clicked.connect(self.LoginPage)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(240, 300, 51, 31))
         self.pushButton.setStyleSheet("background-color: rgb(255, 255, 255);")
