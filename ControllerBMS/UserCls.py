@@ -5,13 +5,14 @@
 from ControllerBMS.Payment import Payment
 from ControllerBMS.Credit import Credit
 from ControllerBMS.Account import Account
+from ModelBMS.database import Database
 
 
 class User:
     #Constuctor function
     #7 parametreden fazlası kötü
     #constructor için bilgileri dizi olarak vermek daha mantıklı
-    def __init__(self, info = None):
+    def __init__(self, info : str = None):
         self.__ID = info[0][0]
         self.__AdminID = info[0][1]
         self.__firstName = info[0][2]
@@ -24,11 +25,27 @@ class User:
         self.__username = info[0][9]
         self.__password = info[0][10]
         self.__phoneNumber = info[0][11]
+        self.dab = Database()
 
         #self.__payment = self.getPayments()
         #self.__account = self.getAccounts()
         #self.__credit = self.getCredit()
         
+        
+    def getUserInformations(self, username, password):
+        query = "SELECT * FROM customer WHERE Username = %s AND password = %s"
+
+        userInformations = Database.Query(Database, query, username, password)
+        
+        
+        
+
+        
+        return userInformations
+
+    def createUser(self, info):
+        onlineUser = User(info)
+        return onlineUser
 
 
     def getDateOfBirth(self):
