@@ -10,61 +10,87 @@
     <height>400</height>
    </rect>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::NoContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>AYARLAR</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>500</width>
+     <height>380</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>500</width>
+     <height>380</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
       <width>501</width>
-      <height>391</height>
+      <height>351</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>501</width>
+      <height>351</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>501</width>
+      <height>351</height>
+     </size>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::NoContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(49, 49, 49);</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
+    <property name="iconSize">
+     <size>
+      <width>16</width>
+      <height>14</height>
+     </size>
+    </property>
     <widget class="QWidget" name="tab_2">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(49, 49, 49);</string>
+     </property>
      <attribute name="title">
       <string>Şifre Değiştime</string>
      </attribute>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>35</y>
-        <width>141</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Mevcut Şifreniz</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>30</y>
-        <width>141</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>110</y>
+        <y>100</y>
         <width>131</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
@@ -79,11 +105,14 @@
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>230</x>
         <y>100</y>
         <width>141</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_4">
@@ -107,61 +136,145 @@
      <widget class="QLineEdit" name="lineEdit_3">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>230</x>
         <y>170</y>
         <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>300</x>
+        <x>270</x>
         <y>240</y>
         <width>61</width>
         <height>41</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>ONAYLA</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButton">
+     <widget class="QPushButton" name="limitPasswordButton">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>320</y>
-        <width>121</width>
-        <height>41</height>
+        <x>400</x>
+        <y>100</y>
+        <width>31</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>ANA MENÜ</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../icons/info.png</normaloff>../icons/info.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>30</height>
+       </size>
       </property>
      </widget>
+     <widget class="QLabel" name="textLabelPassword">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>140</y>
+        <width>101</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;KISITLAMALAR&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>30</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="maxLength">
+       <number>15</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>10</y>
+        <width>158</width>
+        <height>78</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Mevcut Şifreniz</string>
+      </property>
+     </widget>
+     <zorder>label_3</zorder>
+     <zorder>label_4</zorder>
+     <zorder>pushButton</zorder>
+     <zorder>limitPasswordButton</zorder>
+     <zorder>textLabelPassword</zorder>
+     <zorder>lineEdit</zorder>
+     <zorder>label_2</zorder>
+     <zorder>lineEdit_2</zorder>
+     <zorder>lineEdit_3</zorder>
     </widget>
     <widget class="QWidget" name="tab_3">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(49, 49, 49);</string>
+     </property>
      <attribute name="title">
       <string>Bilgi Güncelleme</string>
      </attribute>
      <widget class="QLineEdit" name="lineEdit_5">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>40</y>
+        <x>230</x>
+        <y>30</y>
         <width>141</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>40</y>
+        <x>40</x>
+        <y>20</y>
         <width>101</width>
-        <height>41</height>
+        <height>51</height>
        </rect>
       </property>
       <property name="font">
@@ -176,18 +289,24 @@
      <widget class="QLineEdit" name="lineEdit_6">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>110</y>
+        <x>230</x>
+        <y>100</y>
         <width>141</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="maxLength">
+       <number>10</number>
       </property>
      </widget>
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>110</y>
+        <x>40</x>
+        <y>90</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -204,8 +323,8 @@
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>200</y>
+        <x>40</x>
+        <y>170</y>
         <width>191</width>
         <height>31</height>
        </rect>
@@ -222,8 +341,8 @@
      <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
        <rect>
-        <x>280</x>
-        <y>190</y>
+        <x>270</x>
+        <y>160</y>
         <width>61</width>
         <height>51</height>
        </rect>
@@ -258,18 +377,77 @@
      <widget class="QPushButton" name="pushButton_5">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>280</y>
-        <width>75</width>
+        <x>260</x>
+        <y>250</y>
+        <width>81</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>GÜNCELLE</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="limitUsernameButton">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>100</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../icons/info.png</normaloff>../icons/info.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>35</width>
+        <height>31</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QLabel" name="textLabelUsername">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>150</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;c&amp;lt;dds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>lineEdit_5</zorder>
+     <zorder>label_8</zorder>
+     <zorder>lineEdit_6</zorder>
+     <zorder>label_10</zorder>
+     <zorder>label_12</zorder>
+     <zorder>pushButton_3</zorder>
+     <zorder>commandLinkButton_5</zorder>
+     <zorder>limitUsernameButton</zorder>
+     <zorder>textLabelUsername</zorder>
+     <zorder>pushButton_5</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(49, 49, 49);</string>
+     </property>
      <attribute name="title">
       <string>Hesap Silme</string>
      </attribute>
@@ -300,6 +478,9 @@
         <height>41</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
       <item>
        <property name="text">
         <string>Mevcut Hesap</string>
@@ -310,7 +491,7 @@
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>180</y>
+        <y>160</y>
         <width>75</width>
         <height>51</height>
        </rect>
@@ -337,13 +518,16 @@
      </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(49, 49, 49);</string>
+     </property>
      <attribute name="title">
       <string>Limit Ayarları</string>
      </attribute>
      <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>90</x>
         <y>20</y>
         <width>331</width>
         <height>31</height>
@@ -366,10 +550,10 @@
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>30</x>
         <y>70</y>
         <width>61</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
@@ -384,20 +568,26 @@
      <widget class="QLineEdit" name="lineEdit_9">
       <property name="geometry">
        <rect>
-        <x>252</x>
+        <x>180</x>
         <y>70</y>
         <width>151</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>30</x>
         <y>130</y>
         <width>81</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
@@ -412,18 +602,24 @@
      <widget class="QLineEdit" name="lineEdit_10">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>180</x>
         <y>130</y>
         <width>151</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="label_17">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>200</y>
+        <x>30</x>
+        <y>190</y>
         <width>101</width>
         <height>31</height>
        </rect>
@@ -440,8 +636,8 @@
      <widget class="QRadioButton" name="radioButton_3">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>210</y>
+        <x>170</x>
+        <y>200</y>
         <width>82</width>
         <height>21</height>
        </rect>
@@ -458,8 +654,8 @@
      <widget class="QRadioButton" name="radioButton_4">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>210</y>
+        <x>300</x>
+        <y>200</y>
         <width>82</width>
         <height>21</height>
        </rect>
@@ -476,11 +672,14 @@
      <widget class="QPushButton" name="pushButton_4">
       <property name="geometry">
        <rect>
-        <x>280</x>
-        <y>270</y>
+        <x>220</x>
+        <y>250</y>
         <width>75</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>ONAYLA</string>
@@ -499,7 +698,133 @@
        <string>ANA MENÜ</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="limitEftButton">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>70</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../icons/info.png</normaloff>../icons/info.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>35</width>
+        <height>31</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="limitTransferButton">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>130</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../icons/info.png</normaloff>../icons/info.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>35</width>
+        <height>31</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QLabel" name="textLabelEft">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>60</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;EFT İÇİN KISITLAMA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="textLabelTransfer">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>120</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;EFT İÇİN KISITLAMA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>label_13</zorder>
+     <zorder>commandLinkButton_3</zorder>
+     <zorder>textLabelEft</zorder>
+     <zorder>textLabelTransfer</zorder>
+     <zorder>lineEdit_9</zorder>
+     <zorder>lineEdit_10</zorder>
+     <zorder>limitTransferButton</zorder>
+     <zorder>limitEftButton</zorder>
+     <zorder>radioButton_4</zorder>
+     <zorder>radioButton_3</zorder>
+     <zorder>label_15</zorder>
+     <zorder>label_14</zorder>
+     <zorder>label_17</zorder>
+     <zorder>pushButton_4</zorder>
     </widget>
+   </widget>
+   <widget class="QCommandLinkButton" name="commandLinkButton">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>350</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>ANA MENÜ</string>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -507,23 +832,27 @@
  <tabstops>
   <tabstop>tabWidget</tabstop>
   <tabstop>lineEdit</tabstop>
+  <tabstop>limitPasswordButton</tabstop>
   <tabstop>lineEdit_2</tabstop>
   <tabstop>lineEdit_3</tabstop>
   <tabstop>pushButton</tabstop>
-  <tabstop>commandLinkButton</tabstop>
   <tabstop>lineEdit_5</tabstop>
+  <tabstop>limitUsernameButton</tabstop>
   <tabstop>lineEdit_6</tabstop>
   <tabstop>pushButton_3</tabstop>
   <tabstop>pushButton_5</tabstop>
-  <tabstop>commandLinkButton_5</tabstop>
   <tabstop>comboBox</tabstop>
   <tabstop>pushButton_2</tabstop>
+  <tabstop>limitEftButton</tabstop>
   <tabstop>lineEdit_9</tabstop>
+  <tabstop>limitTransferButton</tabstop>
   <tabstop>lineEdit_10</tabstop>
   <tabstop>radioButton_3</tabstop>
   <tabstop>radioButton_4</tabstop>
   <tabstop>pushButton_4</tabstop>
   <tabstop>commandLinkButton_3</tabstop>
+  <tabstop>commandLinkButton_5</tabstop>
+  <tabstop>commandLinkButton</tabstop>
   <tabstop>commandLinkButton_2</tabstop>
  </tabstops>
  <resources/>

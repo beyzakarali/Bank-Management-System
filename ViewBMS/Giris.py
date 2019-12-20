@@ -11,8 +11,10 @@ from ModelBMS.database import Database
 from mysql.connector import Error
 from ControllerBMS.UserCls import User
 
+    
 
-#Giriş sayfası GUI
+
+
 class Ui_LOGIN(object):
     #Yapıcı fonksiyon
     def __init__(self):
@@ -67,22 +69,20 @@ class Ui_LOGIN(object):
     #    else:
     #        self.showErrorDiaglog()
 
-
-
-                   
-    #Giris sayfası yapısı    
     def setupUi(self, LOGIN):
         LOGIN.setObjectName("LOGIN")
         LOGIN.setEnabled(True)
         LOGIN.resize(500, 400)
         LOGIN.setMinimumSize(QtCore.QSize(500, 400))
+        LOGIN.setMaximumSize(QtCore.QSize(500, 400))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
         LOGIN.setFont(font)
-        LOGIN.setStyleSheet("background-color: rgb(170, 0, 0);")
+        LOGIN.setStyleSheet("background-color: rgb(49, 49, 49);")
         self.centralwidget = QtWidgets.QWidget(LOGIN)
+        self.centralwidget.setStyleSheet("background-color: rgb(49, 49, 49);")
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(50, 10, 401, 31))
@@ -91,15 +91,8 @@ class Ui_LOGIN(object):
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
-        self.label.setStyleSheet("background-color: rgb(170, 0, 0);")
+        self.label.setStyleSheet("background-color: rgb(49, 49, 49);")
         self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(40, 50, 431, 301))
-        self.label_2.setStyleSheet("background-color: rgb(170, 0, 0);")
-        self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap("../FOTO/security-icon-information-10.png"))
-        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(90, 230, 111, 20))
         font = QtGui.QFont()
@@ -107,7 +100,8 @@ class Ui_LOGIN(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_3.setFont(font)
-        self.label_3.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_3.setStyleSheet("background-color: rgb(49, 49, 49);\n"
+"color: rgb(255, 255, 255);")
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(140, 260, 51, 20))
@@ -129,32 +123,41 @@ class Ui_LOGIN(object):
         self.lineEdit_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_2.setObjectName("lineEdit_2")
-        
-        #Enter ile giris.
-        self.lineEdit_2.returnPressed.connect(self.authentication)
-
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(120, 340, 141, 16))
+        self.label_5.setGeometry(QtCore.QRect(120, 350, 141, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
         self.label_5.setFont(font)
-        self.label_5.setStyleSheet("background-color: rgb(170, 0, 0);\n"
-        "color: rgb(255, 255, 255);")
+        self.label_5.setStyleSheet("background-color: rgb(49, 49, 49);")
         self.label_5.setObjectName("label_5")
         self.commandLinkButton = QtWidgets.QCommandLinkButton(self.centralwidget)
-        self.commandLinkButton.setGeometry(QtCore.QRect(260, 330, 185, 41))
-        self.commandLinkButton.setStyleSheet("background-color: rgb(170, 0, 0);\n"
-        "color: rgb(255, 255, 255);")
+        self.commandLinkButton.setGeometry(QtCore.QRect(270, 340, 185, 41))
+        self.commandLinkButton.setStyleSheet("")
         self.commandLinkButton.setObjectName("commandLinkButton")
-        self.commandLinkButton.clicked.connect(self.LoginPage)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(240, 300, 51, 31))
         self.pushButton.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton.setAutoDefault(True)
+        self.pushButton.setDefault(False)
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.clicked.connect(self.authentication)
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(-10, 50, 511, 301))
+        self.label_2.setStyleSheet("background-color: rgb(49, 49, 49);")
+        self.label_2.setText("")
+        self.label_2.setPixmap(QtGui.QPixmap("../FOTO/security-icon-information-10.png"))
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.label.raise_()
+        self.label_2.raise_()
+        self.label_3.raise_()
+        self.lineEdit.raise_()
+        self.label_4.raise_()
+        self.lineEdit_2.raise_()
+        self.pushButton.raise_()
+        self.label_5.raise_()
+        self.commandLinkButton.raise_()
         LOGIN.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(LOGIN)
         self.statusbar.setObjectName("statusbar")
@@ -165,6 +168,11 @@ class Ui_LOGIN(object):
         LOGIN.setTabOrder(self.lineEdit, self.lineEdit_2)
         LOGIN.setTabOrder(self.lineEdit_2, self.pushButton)
         LOGIN.setTabOrder(self.pushButton, self.commandLinkButton)
+
+        self.lineEdit_2.returnPressed.connect(self.authentication)
+        self.commandLinkButton.clicked.connect(self.LoginPage)
+        self.pushButton.clicked.connect(self.authentication)
+
 
     def retranslateUi(self, LOGIN):
         _translate = QtCore.QCoreApplication.translate

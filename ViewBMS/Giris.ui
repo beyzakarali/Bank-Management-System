@@ -19,6 +19,12 @@
     <height>400</height>
    </size>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>400</height>
+   </size>
+  </property>
   <property name="font">
    <font>
     <pointsize>10</pointsize>
@@ -30,9 +36,12 @@
    <string>LOGIN</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(170, 0, 0);</string>
+   <string notr="true">background-color: rgb(49, 49, 49);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(49, 49, 49);</string>
+   </property>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -50,32 +59,10 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(170, 0, 0);</string>
+     <string notr="true">background-color: rgb(49, 49, 49);</string>
     </property>
     <property name="text">
      <string>     BANK MANAGEMENT SYSTEM</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>50</y>
-      <width>431</width>
-      <height>301</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(170, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>../FOTO/security-icon-information-10.png</pixmap>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -95,7 +82,8 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(49, 49, 49);
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Kullanıcı Adı:</string>
@@ -163,9 +151,9 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>340</y>
+      <y>350</y>
       <width>141</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -176,8 +164,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(170, 0, 0);
-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(49, 49, 49);</string>
     </property>
     <property name="text">
      <string>Henüz kayıtlı değilseniz</string>
@@ -186,15 +173,14 @@ color: rgb(255, 255, 255);</string>
    <widget class="QCommandLinkButton" name="commandLinkButton">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>330</y>
+      <x>270</x>
+      <y>340</y>
       <width>185</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(170, 0, 0);
-color: rgb(255, 255, 255);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>TIKLAYIN</string>
@@ -222,6 +208,37 @@ color: rgb(255, 255, 255);</string>
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>50</y>
+      <width>511</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(49, 49, 49);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../FOTO/security-icon-information-10.png</pixmap>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>lineEdit</zorder>
+   <zorder>label_4</zorder>
+   <zorder>lineEdit_2</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>label_5</zorder>
+   <zorder>commandLinkButton</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
