@@ -7,8 +7,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Settings(object):
-
-    def __init__(self,prevWin : QtWidgets.QMainWindow = None):
+    
+    def __init__(self, prevWin = None):
         self.winSettings = QtWidgets.QMainWindow()
         self.setupUi(self.winSettings)
         self.winSettings.show()
@@ -39,9 +39,14 @@ class Ui_Settings(object):
         self.textLabelUsername.setText("-Boşluk olmamalı\n-En az 1 rakam içermelidir\n       ÖRN:Mavi9  ") 
 
 
+   
+    def message(self):
+        print("sınırlandırmalar var.")
+
     def passPrevWin(self):
         self.winSettings.close()
         self.prevWin.show()
+      
 
     def setupUi(self, Settings):
         Settings.setObjectName("Settings")
@@ -89,7 +94,6 @@ class Ui_Settings(object):
         self.pushButton.setGeometry(QtCore.QRect(270, 240, 61, 41))
         self.pushButton.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton.setObjectName("pushButton")
-
         self.limitPasswordButton = QtWidgets.QPushButton(self.tab_2)
         self.limitPasswordButton.setGeometry(QtCore.QRect(400, 100, 31, 31))
         self.limitPasswordButton.setText("")
@@ -266,7 +270,14 @@ class Ui_Settings(object):
         self.pushButton_4.setGeometry(QtCore.QRect(220, 250, 75, 41))
         self.pushButton_4.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pushButton_4.setObjectName("pushButton_4")
-     
+
+
+        self.commandLinkButton_3 = QtWidgets.QCommandLinkButton(self.centralwidget)
+        self.commandLinkButton_3.setGeometry(QtCore.QRect(370, 350, 121, 41))
+        self.commandLinkButton_3.setObjectName("commandLinkButton_3")
+        self.commandLinkButton_3.clicked.connect(self.passPrevWin)
+
+
         self.limitEftButton = QtWidgets.QPushButton(self.tab_5)
         self.limitEftButton.setGeometry(QtCore.QRect(350, 70, 31, 31))
         self.limitEftButton.setText("")
