@@ -2,44 +2,70 @@
 # email : beyzakarali4743@gmail.com
 
 
+from PyQt5.QtWidgets import QMessageBox
+import datetime
+
 class AccountActivity:
-    def __init__(self ,ID = 0, name = "", amount = 0, date = "" ):
-        self.__ID = ID
-        self.__name = name
-        self.__amount = amount
-        self.__date = date
+    def __init__(self , activityInfo ):
+        self.__ID = activityInfo[0]
+        self.__name = activityInfo[1]
+        self.__amount = activityInfo[2]
+        self.__date = activityInfo[3]
  
 
     def setID(self ,newID):
         self.__ID = newID
 
-    def setname(self ,newname):
+    def setHame(self ,newname):
         self.__name = newname 
 
-    def setamount(self ,newamount):
+    def setAmount(self ,newamount):
         self.__amount = newamount
 
-    def setdate(self ,newdate):
+    def setDate(self ,newdate):
         self.__date = newdate   
 
     def getID(self):
         return self.__ID 
 
-    def getname(self):
+    def getName(self):
         return self.__name
 
-    def getamount(self):
+    def getAmount(self):
         return self.__amount 
 
-    def getdate(self):
+    def getDate(self):
         return self.__date    
     
-
+    @staticmethod
+    def getCurrentDate():
+        return datetime.datetime.now()
+        
     # get information on database 
     def wiewActivityDetails(self):
         pass
 
-    # get information on database  
-    #check payment and moneytransfer 
-    def printReceipt(self):
+    
+    def createActivity(self):
         pass
+
+    def printReceipt(self):
+        title = "---MAKBUZ---"
+        text = self.getName()
+        informativeText = "Hesabınızdan " + self.getDate() + "tarihinde,"
+        + self.getAmount() + "₺ çekilmiştir."
+
+        self.showInformationDialog(title, text, informativeText)
+
+
+    #Hata giriş pop-up
+    @staticmethod
+    def showInformationDialog(title, text, informativeText):
+        msg = QMessageBox()
+        msg.setWindowTitle(title)
+        msg.setText(text)
+        msg.setIcon(QMessageBox.Information)
+        msg.setStandardButtons(QMessageBox.Ok)
+        msg.setDefaultButton(QMessageBox.Ok)
+        msg.setInformativeText(informativeText)
+        x = msg.exec_()

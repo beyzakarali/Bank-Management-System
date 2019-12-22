@@ -2,13 +2,16 @@
 # email : batuuzun08@gmail.com
 # edited by beyza at 2019-12-05 20:07.
 
+from ModelBMS.database import Database
+
 
 class Bank:
-    def __init__(self, ID = "", bankName = 0, phoneNumber = 0):
-        self.__ID = id
-        self.__bankName = bankName
-        self.__phoneNumber = phoneNumber
-
+    def __init__(self, bankInformations):
+        self.__ID = bankInformations[0]
+        self.__bankName = bankInformations[1]
+        self.__phoneNumber = bankInformations[2]
+        self.db = Database
+        #self.onlineUser = User
 
     #getter and setter function
     def  setID(self, newID):
@@ -34,3 +37,15 @@ class Bank:
     # user info 
     def viewAllDetails(self):
         pass
+
+
+    def createUsersBanks(self, userID):
+        query = "SELECT DISTINCT bank.ID, bank.Name, bank.Phone FROM bank INNER JOIN account ON account.BankId = bank.ID WHERE account.customerID = %s"
+        banks = self.db.Query(Database, query, userID)
+        for bankInformation in banks:
+            self.onlineUser.banks.append(Bank(bankInformation))
+
+
+    #def getUsersBank(self):
+    #    return self.onlineUser.banks
+    
