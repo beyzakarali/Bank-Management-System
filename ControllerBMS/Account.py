@@ -1,49 +1,51 @@
 # created by beyza at 2019-12-05 20:09.
 # email : beyzakarali4743@gmail.com
 
-from AccountActivity import AccountActivity
+from ControllerBMS.AccountActivity import AccountActivity
+from ModelBMS.database import Database
 
 class Account:
     #Learn to export the object as a parametres.
-    def __init__(self, ID =0 ,accountNo =0 ,ıban = 0, balance = 0, bankId = 0, userId = 0, ):
-        self.__ID = ID
-        self.__accountNo = accountNo
-        self.__ıban = ıban
-        self.__balance = balance
-        self.__bankId = bankId
-        self.__userId = userId 
+    def __init__(self, usersAccountsInfo):
+        self.__ID = usersAccountsInfo[0]
+        self.__accountNo = usersAccountsInfo[1]
+        self.__iban = usersAccountsInfo[2]
+        self.__balance = usersAccountsInfo[3]
+        self.__bankId = usersAccountsInfo[4]
+        self.__userId = usersAccountsInfo[6] 
+        
         self.__activity = AccountActivity()
 
     def setID(self ,newID):
         self.__ID = newID
 
-    def setaccountNo (self ,newaccountNo ):
+    def setAccountNo (self ,newaccountNo ):
         self.__accountNo  = newaccountNo 
 
-    def setıban (self ,newıban ):
+    def setIban (self ,newıban ):
         self.__ıban  = newıban
 
-    def setbalance (self ,newbalance ):
+    def setBalance (self ,newbalance ):
         self.__balance  = newbalance 
 
-    def setbankId (self ,newbankId ):
+    def setBankId (self ,newbankId ):
         self.__bankId  = newbankId    
 
-    def setuserId (self ,newuserId ):
+    def setUserId (self ,newuserId ):
         self.__userId  = newuserId    
 
-    def setactivity (self ,newactivity ):
+    def setActivity (self ,newactivity ):
         self.__activity = newactivity            
              
 
     def getID(self):
         return self.__ID
 
-    def getaccountNo (self):
+    def getAccountNo (self):
         return self.__accountNo 
 
-    def getıban (self):
-        return self.__ıban    
+    def getIban (self):
+        return self.__iban    
     
     def getbalance (self):
         return self.__balance  
@@ -61,3 +63,16 @@ class Account:
     #Pull account information from the database and make a list.
     def AccountActivity(self):
         pass
+
+
+    def getUsersAccounts(self, bank):
+        pass
+
+    @classmethod
+    def setAccounts(cls, userID):
+        query = "SELECT * FROM account INNER JOIN customer ON customerID = customer.ID WHERE customerID = %s"
+        accounts = Database.Query(Database, query, userID)
+        clsAccounts : Account = []
+        for account in accounts:
+            clsAccounts.append(cls(account))
+        return clsAccounts

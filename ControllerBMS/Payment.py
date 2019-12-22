@@ -2,12 +2,13 @@
 # email : beyzakarali4743@gmail.com
 
 
+from ModelBMS.database import Database
 
 class Payment:
-    def __init__(self ,ID = 0, paymentName = "", amount = 0 ):
-        self.__ID = ID
-        self.__paymentName = paymentName
-        self.__amount = amount
+    def __init__(self , paymentInfo):
+        self.__ID = paymentInfo[0]
+        self.__paymentName = paymentInfo[1]
+        self.__amount = paymentInfo[2]
 
     def setID(self ,newID):
         self.__ID = newID
@@ -40,6 +41,15 @@ class Payment:
         pass
 
 
+    @classmethod
+    def setPayments(cls, userID):
+        query = "SELECT payments.ID, payments.PaymentName, payments.Amount FROM `customer` INNER JOIN payments on customer.ID = payments.CustomerId WHERE customer.ID = %s"
+        payments = Database.Query(Database, query, userID)
+        clsPayments : Payment = []
+        for payment in payments:
+            clsPayments.append(cls(payment))
+        
+        return clsPayments
  
 
           

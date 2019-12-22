@@ -2,20 +2,20 @@
 # email : beyzakarali4743@gmail.com
 
 
-
-from Bank import Bank
+from ControllerBMS.Bank import Bank
+from ModelBMS.database import Database
 
 class Credit:
 
 #learn to export the object as a parameter.
-    def __init__(self, ID = 0, creditNo = 0, statementDay = "", paymentDueDay = "", limit = 0, creditAvaliable = 0):
-       self.__ID = ID
-       self.__creditNo = creditNo
-       self.__statementDay = statementDay
-       self.__paymentDueDay = paymentDueDay
-       self.__limit = limit
-       self.__creditAvaliable = creditAvaliable
-       self.__bank = Bank()
+    def __init__(self, usersCreditsInfo):
+       self.__ID = usersCreditsInfo[0]
+       self.__creditNo = usersCreditsInfo[1]
+       self.__statementDay = usersCreditsInfo[2]
+       self.__paymentDueDay = usersCreditsInfo[3]
+       self.__limit = usersCreditsInfo[4]
+       self.__creditAvaliable = usersCreditsInfo[5]
+       #self.__bank = Bank()
 
 
     def setID(self, newID ):
@@ -70,8 +70,14 @@ class Credit:
     def wiewCreditDetails(self):
         pass
 
-    
-        
+    @classmethod
+    def setCredits(cls, userID):
+        query = "SELECT * FROM credit INNER JOIN customer ON customerID = customer.ID WHERE customerID = %s"
+        credits = Database.Query(Database, query, userID)
+        clsCredits : Credit = []
+        for credit in credits:
+            clsCredits.append(cls(credit))
+        return clsCredits
             
 
 
