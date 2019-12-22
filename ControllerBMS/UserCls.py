@@ -6,12 +6,10 @@ from ControllerBMS.Payment import Payment
 from ControllerBMS.Credit import Credit
 from ControllerBMS.Account import Account
 from ModelBMS.database import Database
+from ControllerBMS.Bank import Bank
 
 
 class User:
-    #Constuctor function
-    #7 parametreden fazlası kötü
-    #constructor için bilgileri dizi olarak vermek daha mantıklı
     def __init__(self, info : str = None):
         self.__ID = info[0][0]
         self.__AdminID = info[0][1]
@@ -25,27 +23,50 @@ class User:
         self.__username = info[0][9]
         self.__password = info[0][10]
         self.__phoneNumber = info[0][11]
-        self.dab = Database()
+        self.__payments = Payment
+        self.__accounts = Account
+        self.__credits = Credit
+        self.banks : Bank = Bank
+        self.db = Database
+        
 
         #self.__payment = self.getPayments()
         #self.__account = self.getAccounts()
         #self.__credit = self.getCredit()
+    
+    def getUserID(self):
+        return self.__ID
+
+    
         
+
+    def createUsersPayments(self):
+        onlineUserID = self.getID()
+        self.__payments = Payment.setPayments(onlineUserID)
+
+    def createUsersAccounts(self):
+        onlineUserID = self.getID()
+        self.__accounts = Account.setAccounts(onlineUserID)
+
+    def createUsersCredit(self):
+        onlineUserID = self.getID()
+        self.__credits = Credit.setCredits(onlineUserID)
+
+
         
     def getUserInformations(self, username, password):
         query = "SELECT * FROM customer WHERE Username = %s AND password = %s"
 
+        #doğru çalışan
         userInformations = Database.Query(Database, query, username, password)
-        
-        
-        
 
-        
         return userInformations
 
-    def createUser(self, info):
-        onlineUser = User(info)
-        return onlineUser
+    
+
+    @classmethod
+    def createUser(cls, info):
+        return cls(info)
 
 
     def getDateOfBirth(self):
@@ -60,8 +81,7 @@ class User:
         return self.__ID
 
     def getPayments(self):
-        payment = Payment(self.getUsername())
-        return payment
+        return self.__payments
 
     def getAccounts(self):
         account = Account(self.getUsername())
@@ -101,5 +121,9 @@ class User:
     #implement to all getter function
 
 
+    def insertUser(self, userInformations):
+        query = "INSERT INTO customer(AdminId, Name, Surname, TCNo, DateOfBirth, Mail, Gender, ProfilePhoto, Username, Password) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+
+        Database.Query(Database, query, userInformations)
 
 
