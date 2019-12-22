@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
-
+import numpy as np
 
 class Database:
     def __init__(self):
@@ -42,7 +42,7 @@ class Database:
 
 
   
-     #Kimlik doğrulama
+    #Kimlik doğrulama
     def getUserInformations(self, username, password):
         query = "SELECT * FROM customer WHERE Username = %s AND password = %s"
         try:
@@ -55,14 +55,20 @@ class Database:
         if(informationsOfUser == []):
             return False
         else:
-            return User(informationsOfUser)
+            return informationsOfUser
 
+    
+    def isNestedArray(self, info):
+        if(np.size(info[0]) > 1 ):
+            info = info[0]
+        return info
 
-
-
-
+    
+    
     #Veritabanı sorgusu yapma.
     def Query(self, query : str, *info):
+        info = self.isNestedArray(self, info)
+
         try:
             self.connection = self.connectDatabase(self)
             
@@ -82,9 +88,9 @@ class Database:
         return result
 
     #random Customer ekleme
-    def randCustomer():
+    def randCustomer(self):
         try:
-            connection = getDbConnection()
+            connection = self.getDbConnection()
             cursor = connection.cursor()
             with open("customer.txt", "r") as dosya:
                 for query in dosya:
