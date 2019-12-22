@@ -1,25 +1,24 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from ControllerBMS.UserCls import User
 from ModelBMS.database import Database as db
 
 NEXT_TAB = 1
 
-
-from PyQt5 import QtCore, QtGui, QtWidgets
-
-
-class Ui_Record(object):
+class Ui_SignUp(object):
     def __init__(self, prevWin = None):
         self.winRecord = QtWidgets.QMainWindow()
         self.setupUi(self.winRecord)
         self.winRecord.show()
         self.prevWin = prevWin
+        self.onlineUser = User
 
     #Giris sayfasına aktarma
-    def Logın_page (self):
+    def LogInPage (self):
+        print("giris page....")
         self.winRecord.hide()
-        self.win = Ui_LOGIN()
+        self.prevWin.show()
 
     def changeTab(self):
         index = self.tabWidget.currentIndex()
@@ -30,11 +29,9 @@ class Ui_Record(object):
         userInfo = self.getUserInfo()
         for i in userInfo:
             print(i)
-        db.Query(db, 
-        "INSERT INTO customer(AdminId, Name, Surname, TCNo, DateOfBirth, Mail, Gender, ProfilePhoto, Username, Password) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        , userInfo)
+        self.onlineUser.insertUser(User, userInfo)
         print("insertUser function....")
-        self.Logın_page()
+        self.LogInPage()
 
     def getUserInfo(self):
         userInfo = []
@@ -43,7 +40,7 @@ class Ui_Record(object):
         userInfo.append(self.lineEdit_2.text())
         userInfo.append(self.lineEdit_3.text())
 
-         #yıl-ay-gün | yıl.ay.gün formatıyla olmalı
+         #yıl-ay-gün formatıyla olmalı
         userInfo.append(self.lineEdit_4.text())
 
         userInfo.append(self.lineEdit_5.text())
@@ -61,6 +58,10 @@ class Ui_Record(object):
         else:
             return "E"
 
+
+
+######################### SAYFA DÜZENİ ###########################
+#Pyuic5 generator ile otomatik oluşturulmuştur.
     def setupUi(self, Record):
         Record.setObjectName("Record")
         Record.resize(500, 400)
@@ -303,5 +304,5 @@ class Ui_Record(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    RECORD = Ui_Record()
+    RECORD = Ui_SignUp()
     sys.exit(app.exec_())
