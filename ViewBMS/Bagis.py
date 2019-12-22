@@ -7,18 +7,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 ##buton sıkıntılarını düzelt
 
 class Ui_Donation(object):
-    def __init__(self , prevWin  : QtWidgets.QMainWindow  = None ):
+    def __init__(self, prevWin = None):
         self.winDonation = QtWidgets.QMainWindow()
         self.setupUi(self.winDonation)
         self.winDonation.show()
         self.prevWin = prevWin
 
+    def passPrevWin(self):
+        self.winCredit.close()
+        self.prevWin.show()
+
     def change_page(self):
         self.tabWidget.setCurrentIndex(1)
 
-    def passPrevWin(self):##########################################İŞE YARAMIYOR
-        self.winDonation.close()
-        self.prevWin.show()
 
     def setupUi(self, Donation):
         Donation.setObjectName("Donation")

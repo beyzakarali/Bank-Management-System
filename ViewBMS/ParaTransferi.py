@@ -19,6 +19,8 @@ class Ui_MoneyTransfer(object):
         self.winMoneyTransfer.close()
         self.prevWin.show()
 
+######################### SAYFA DÜZENİ ###########################
+#Pyuic5 generator ile otomatik oluşturulmuştur.
 
 
     def setupUi(self, MoneyTransfer):

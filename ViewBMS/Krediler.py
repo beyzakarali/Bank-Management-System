@@ -5,8 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Credit(object):
-
-    def __init__(self, prevWin : QtWidgets.QMainWindow = None):
+    def __init__(self, prevWin = None):
         self.winCredit = QtWidgets.QMainWindow()
         self.setupUi(self.winCredit)
         self.winCredit.show()
@@ -16,6 +15,10 @@ class Ui_Credit(object):
         self.winCredit.close()
         self.prevWin.show()
 
+
+
+######################### SAYFA DÜZENİ ###########################
+#Pyuic5 generator ile otomatik oluşturulmuştur.
 
     def setupUi(self, Credit):
         Credit.setObjectName("Credit")

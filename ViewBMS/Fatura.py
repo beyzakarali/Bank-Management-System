@@ -10,15 +10,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Bill(object):
-    def __init__(self, prevWin : QtWidgets.QMainWindow = None):
+    def __init__(self, prevWin = None):
         self.winBill = QtWidgets.QMainWindow()
         self.setupUi(self.winBill)
         self.winBill.show()
         self.prevWin = prevWin
 
-    def passPrevWin(self):##########################################
-        self.winBill.close()
-        self.prevWin.show()   
+    def passPrevWin(self):
+        self.winSettings.close()
+        self.prevWin.show()
 
     def setupUi(self, Bill):
         Bill.setObjectName("Bill")

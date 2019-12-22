@@ -6,16 +6,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_TaxOfficial(object):
-    def __init__(self , prevWin : QtWidgets.QMainWindow = None):
-
+    def __init__(self, prevWin):
         self.winTaxOfficial = QtWidgets.QMainWindow()
         self.setupUi(self.winTaxOfficial)
         self.winTaxOfficial.show()
         self.prevWin = prevWin
 
-    def passPrevWin(self): ################################## İŞE YARAMIYOR
-        self.winTaxOfficial.close()
+    def passPrevWin(self):
+        self.winMoneyTransfer.close()
         self.prevWin.show()
+
+
+######################### SAYFA DÜZENİ ###########################
+#Pyuic5 generator ile otomatik oluşturulmuştur.
 
     
     def setupUi(self, TaxOfficial):

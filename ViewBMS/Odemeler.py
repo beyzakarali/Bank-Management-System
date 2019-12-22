@@ -1,4 +1,3 @@
-
 # created by beyza at 2019-11-30 01:33.
 # email : beyzakarali4743@gmail.com
 
@@ -12,8 +11,7 @@ from ViewBMS.Vergi_Resmi import Ui_TaxOfficial
 
 
 class Ui_Payments(object):
-
-    def __init__(self, prevWin : QtWidgets.QMainWindow = None):
+    def __init__(self, prevWin = None):
         self.winPayments = QtWidgets.QMainWindow()
         self.setupUi(self.winPayments)
         self.winPayments.show()
@@ -34,6 +32,11 @@ class Ui_Payments(object):
     def TaxOfficialPage(self):
         self.winPayments.hide()
         self.win = Ui_TaxOfficial()
+
+
+######################### SAYFA DÜZENİ ###########################
+#Pyuic5 generator ile otomatik oluşturulmuştur.
+
     def setupUi(self, Payments):
         Payments.setObjectName("Payments")
         Payments.resize(500, 400)
