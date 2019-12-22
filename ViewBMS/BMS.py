@@ -6,16 +6,20 @@ from ViewBMS.ParaTransferi import Ui_MoneyTransfer
 from ViewBMS.Odemeler import Ui_Payments
 from ViewBMS.Bagis import Ui_Donation
 from ViewBMS.Fatura import Ui_Bill
-from ViewBMS.Ayarlar import Ui_Settings 
+from ViewBMS.Ayarlar import Ui_Settings
 from ViewBMS.Krediler import Ui_Credit
+
+#incele ne işi var
 from ModelBMS.database import Database as db
 from ControllerBMS.UserCls import User as usr
+from ControllerBMS.Bank import Bank 
 
 
 class Ui_BMS(object):
 
     def __init__(self, User : usr):
         self.onlineUser = User
+        self.bk = Bank
         self.winBMS = QtWidgets.QMainWindow()
         self.setupUi(self.winBMS)
         self.winBMS.show()
@@ -23,33 +27,72 @@ class Ui_BMS(object):
     #Güvenli çıkış.
     def ShutDown(self):
         self.winBMS.close()
-    
+
+    #Para Transferleri ekranına geçiş.
     def MoneyTransferPage(self):
         self.winBMS.hide()
         self.win = Ui_MoneyTransfer(self.winBMS)
 
+    #Ödemeler sayfasına geçiş.
     def PaymentsPage(self):
         self.winBMS.hide()
         self.win = Ui_Payments(self.winBMS)
 
+    #Ayarlar sayfasına geçiş.
     def SettingPage(self):
         self.winBMS.hide()
         self.win = Ui_Settings(self.winBMS)
-          
+
+    #Krediler sayfasına geçiş.
     def CreditPage(self):
        self.winBMS.hide()
        self.win = Ui_Credit(self.winBMS)
- 
 
-    def getUsersBank(self):
-        userID = str(self.onlineUser.getID())
-        banks = db.Query(db, "SELECT DISTINCT bank.Name FROM bank INNER JOIN account ON account.BankId = bank.ID WHERE account.customerID = %s"
-                 , userID)
-        self.viewBanks(banks)
-    
+
+    #BMS ekranına User'ın hesaplarını döndürür.
+    def getUsersAccounts(self):
+        self.returnSelectedBankID()
+
+    #BMS ekranında seçilen bankanın ID'sini döndürür.
+    def returnSelectedBankID(self):
+        self.comboBox.currentText()
+        return 
+
+    #User'ın ID sini geri döndürür.
+    def returnOnlineUserID(self):
+        return str(self.onlineUser.getID())
+
+
+    #BMS ekranında seçilen bankayı döndürür.
+    def getSelectedBank(self):
+        userID = self.returnOnlineUserID()
+        selectedBank = self.returnSelectedBank()
+        query = "SELECT * FROM account WHERE customerID = %s AND BankId = %s"
+
+        accounts = db.Query(db, query, userID, selectedBank)
+
+
+
+    #User'a ait bankaları döndürür. 
+    #def getUsersBank(self):
+    #    userID = self.onlineUser.getID()
+    #    banks = self.bk.getUsersBank(userID)
+    #    self.viewBanks(banks)
+
+
+    #User'a ait bankaları BMS ekranında listeler.
     def viewBanks(self, banks):
         for bank in banks:
             self.comboBox.addItem(bank[0])
+        print("Bankalar getirildi.")
+
+
+
+
+
+######################### SAYFA DÜZENİ ###########################
+#Pyuic5 generator ile otomatik oluşturulmuştur.
+
 
     def setupUi(self, BMS):
         BMS.setObjectName("BMS")
@@ -63,9 +106,7 @@ class Ui_BMS(object):
         self.comboBox.setGeometry(QtCore.QRect(350, 0, 141, 22))
         self.comboBox.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
+#        self.getUsersBank()
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(300, 180, 31, 31))
@@ -185,13 +226,15 @@ class Ui_BMS(object):
         self.label_5.setText("")
         self.label_5.setPixmap(QtGui.QPixmap("../BmsLogo.png"))
         self.label_5.setObjectName("label_5")
+
+        #Hesaplar
         self.comboBox_2 = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox_2.setGeometry(QtCore.QRect(350, 30, 141, 22))
         self.comboBox_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.comboBox_2.setObjectName("comboBox_2")
-        self.comboBox_2.addItem("")
-        self.comboBox_2.addItem("")
-        self.comboBox_2.addItem("")
+        self.getUsersAccounts()
+     
+
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(100, 110, 71, 21))
         font = QtGui.QFont()
@@ -262,18 +305,18 @@ class Ui_BMS(object):
     def retranslateUi(self, BMS):
         _translate = QtCore.QCoreApplication.translate
         BMS.setWindowTitle(_translate("BMS", "BMS"))
-        self.comboBox.setItemText(0, _translate("BMS", "BANKA SEÇİNİZ"))
-        self.comboBox.setItemText(1, _translate("BMS", "A"))
-        self.comboBox.setItemText(2, _translate("BMS", "New Item"))
+        #self.comboBox.setItemText(0, _translate("BMS", "BANKA SEÇİNİZ"))
+        #self.comboBox.setItemText(1, _translate("BMS", "A"))
+        #self.comboBox.setItemText(2, _translate("BMS", "New Item"))
         self.pushButton_6.setText(_translate("BMS", "KREDİ İŞLEMLERİ"))
         self.pushButton_7.setText(_translate("BMS", "AYARLAR"))
         self.pushButton_5.setText(_translate("BMS", "PARA TRANSFERLERİ"))
         self.pushButton_8.setText(_translate("BMS", "ÖDEMELER"))
         self.pushButton_9.setText(_translate("BMS", "HESAP HAREKETLERİ"))
         self.pushButton_10.setText(_translate("BMS", "GÜVENLİ ÇIKIŞ"))
-        self.comboBox_2.setItemText(0, _translate("BMS", "HESAP SEÇİNİZ"))
-        self.comboBox_2.setItemText(1, _translate("BMS", "A"))
-        self.comboBox_2.setItemText(2, _translate("BMS", "New Item"))
+        #self.comboBox_2.setItemText(0, _translate("BMS", "HESAP SEÇİNİZ"))
+        #self.comboBox_2.setItemText(1, _translate("BMS", "A"))
+        #self.comboBox_2.setItemText(2, _translate("BMS", "New Item"))
         self.label_7.setText(_translate("BMS", "<html><head/><body><p><span style=\" font-weight:600;\">Bakiye</span></p></body></html>"))
         self.label_2.setText(_translate("BMS", "<html><head/><body><p><span style=\" font-weight:600;\">Borçlar</span></p></body></html>"))
 
