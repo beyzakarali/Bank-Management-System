@@ -53,8 +53,8 @@ class User:
         self.__credits = Credit.setCredits(onlineUserID)
 
 
-        
-    def getUserInformations(self, username, password):
+    @staticmethod
+    def getUserInformations(username, password):
         query = "SELECT * FROM customer WHERE Username = %s AND password = %s"
 
         #doğru çalışan

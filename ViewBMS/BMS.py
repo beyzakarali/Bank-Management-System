@@ -106,7 +106,7 @@ class Ui_BMS(object):
         self.comboBox.setGeometry(QtCore.QRect(350, 0, 141, 22))
         self.comboBox.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.comboBox.setObjectName("comboBox")
-#        self.getUsersBank()
+        #self.getUsersBank()
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(300, 180, 31, 31))
@@ -232,7 +232,7 @@ class Ui_BMS(object):
         self.comboBox_2.setGeometry(QtCore.QRect(350, 30, 141, 22))
         self.comboBox_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.comboBox_2.setObjectName("comboBox_2")
-        self.getUsersAccounts()
+        #self.getUsersAccounts()
      
 
         self.label_7 = QtWidgets.QLabel(self.centralwidget)

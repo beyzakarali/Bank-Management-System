@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
+from PyQt5.QtWidgets import QMessageBox
 import numpy as np
 
 class Database:
@@ -21,8 +22,11 @@ class Database:
         except mysql.connector.Error as error:
             print("Database.py BAĞLANMA HATASI")
             print("Failed to connect to database {} ".format(error))
+            self.showErrorDialog("VERİTABANI BAĞLANTI HATASI", "Veritabanı bağlantısını etkinleştiriniz.")
+            exit(code=-1)
         
         print("Database connected...")
+
         return self.connection
 
 
@@ -126,3 +130,16 @@ class Database:
     def createCursor(self):
         cursor = connection.cursor()
         return cursor
+
+
+
+    @staticmethod
+    def showErrorDialog(title, text, informativeText = ""):
+            msg = QMessageBox()
+            msg.setWindowTitle(title)
+            msg.setText(text)
+            msg.setIcon(QMessageBox.Critical)
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setDefaultButton(QMessageBox.Ok)
+            msg.setInformativeText(informativeText)
+            x = msg.exec_()

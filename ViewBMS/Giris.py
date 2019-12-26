@@ -56,7 +56,8 @@ class Ui_LogIn(object):
     def authentication(self):
         username, password = self.getUsernamePassword()
         
-        userInfo = self.onlineUser.getUserInformations(User, username, password)
+        userInfo = self.onlineUser.getUserInformations(username, password)
+        #self.onlineUser.getUserInformations(self,username,password)
         self.onlineUser = User.createUser(userInfo)
         self.onlineUser.createUsersPayments()
         self.onlineUser.createUsersAccounts()
@@ -126,9 +127,6 @@ class Ui_LogIn(object):
         self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_2.setObjectName("lineEdit_2")
         
-        
-        #Enter ile giris.
-        self.lineEdit_2.returnPressed.connect(self.authentication)
 
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(120, 350, 141, 21))

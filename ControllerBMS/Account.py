@@ -14,7 +14,7 @@ class Account:
         self.__bankId = usersAccountsInfo[4]
         self.__userId = usersAccountsInfo[6] 
         
-        self.__activity = AccountActivity()
+        #self.__activity = AccountActivity()
 
     def setID(self ,newID):
         self.__ID = newID
