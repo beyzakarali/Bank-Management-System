@@ -56,8 +56,6 @@ class Ui_LogIn(object):
         self.onlineUser.createUsersPayments()
         self.onlineUser.createUsersAccounts()
         self.onlineUser.createUsersCredit()
-        userInfo = self.onlineUser.getUserInformations(User, username, password)
-        self.onlineUser = User.createUser(User, userInfo)
         self.BMSPage(self.onlineUser)
 
     ######################### SAYFA DÜZENİ ###########################
