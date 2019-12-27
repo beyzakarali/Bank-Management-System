@@ -5,15 +5,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from ViewBMS.BMS import Ui_BMS
-from ViewBMS.KayitOl import Ui_Record
-from ModelBMS import connect as cnt
-from ModelBMS.database import Database
-from mysql.connector import Error
+from ViewBMS.KayitOl import Ui_SignUp
 from ControllerBMS.UserCls import User
 
 
 
-class Ui_LOGIN(object):
+class Ui_LogIn(object):
     #Yapıcı fonksiyon
     def __init__(self):
         print("Giris.py __init__ ")
@@ -21,7 +18,7 @@ class Ui_LOGIN(object):
         self.setupUi(self.winLogin)
         self.winLogin.show()
         self.onlineUser = User
-        self.db = Database
+        #?self.db = Database
 
         
     #Anamenü sayfasına aktarma
@@ -32,7 +29,8 @@ class Ui_LOGIN(object):
     #Kayıt sayfasına aktarma
     def LoginPage (self):
         self.winLogin.hide()
-        self.win = Ui_Record(self.winLogin)
+        self.win = Ui_SignUp(self.winLogin)
+
 
     #Hata giriş pop-up
     def showErrorDialog(self):
@@ -52,9 +50,16 @@ class Ui_LOGIN(object):
     def authentication(self):
         username, password = self.getUsernamePassword()
         userInfo = self.onlineUser.getUserInformations(User, username, password)
+        self.onlineUser.createUsersAccounts()
+        self.onlineUser.createUsersCredit()
+        userInfo = self.onlineUser.getUserInformations(User, username, password)
         self.onlineUser = User.createUser(User, userInfo)
-        #self.onlineUser = self.onlineUser.createUser(userInfo)
         self.BMSPage(self.onlineUser)
+
+    ######################### SAYFA DÜZENİ ###########################
+#Pyuic5 generator ile otomatik oluşturulmuştur.
+                   
+    #Giris sayfası yapısı      
     def setupUi(self, LOGIN):
         LOGIN.setObjectName("LOGIN")
         LOGIN.setEnabled(True)
@@ -132,10 +137,20 @@ class Ui_LOGIN(object):
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(-10, 50, 511, 301))
         self.label_2.setStyleSheet("background-color: rgb(49, 49, 49);")
+        self.centralwidget.setInputMethodHints(QtCore.Qt.ImhNone)
         self.label_2.setText("")
         self.label_2.setPixmap(QtGui.QPixmap("../ICONS/security-icon-information-10.png"))
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(420, 320, 61, 61))
+        self.pushButton_2.setStyleSheet("color: rgb(255, 255, 255);")
+        self.pushButton_2.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../ICONS/photo.jpeg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_2.setIcon(icon)
+        self.pushButton_2.setIconSize(QtCore.QSize(99, 62))
+        self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(420, 320, 61, 61))
         self.pushButton_2.setStyleSheet("color: rgb(255, 255, 255);")
@@ -182,7 +197,7 @@ class Ui_LOGIN(object):
 
 
 if __name__ == "__main__":
-   import sys
-   app = QtWidgets.QApplication(sys.argv)
-   LOGIN = Ui_LOGIN()
-   sys.exit(app.exec_())
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    LOGIN = Ui_LogIn()
+    sys.exit(app.exec_())
