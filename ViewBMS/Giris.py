@@ -4,16 +4,12 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-
 from ViewBMS.BMS import Ui_BMS
 from ViewBMS.KayitOl import Ui_SignUp
 from ControllerBMS.UserCls import User
 
-    
 
 
-
-#Giriş sayfası GUI
 class Ui_LogIn(object):
     #Yapıcı fonksiyon
     def __init__(self):
@@ -22,11 +18,8 @@ class Ui_LogIn(object):
         self.setupUi(self.winLogin)
         self.winLogin.show()
         self.onlineUser = User
+        #?self.db = Database
 
-
-    #def createUser(self, informationsOfUser):
-    #    self.onlineUser = User(informationsOfUser)
-    #    return self.onlineUser
         
     #Anamenü sayfasına aktarma
     def BMSPage (self, user : User): 
@@ -37,6 +30,7 @@ class Ui_LogIn(object):
     def LoginPage (self):
         self.winLogin.hide()
         self.win = Ui_SignUp(self.winLogin)
+
 
     #Hata giriş pop-up
     def showErrorDialog(self):
@@ -49,7 +43,7 @@ class Ui_LogIn(object):
         msg.setInformativeText("Lütfen tekrar deneyin.")
         x = msg.exec_()
 
-    #username and password entered from interface
+  
     def getUsernamePassword(self):
         return self.lineEdit.text(), self.lineEdit_2.text()
 
@@ -62,16 +56,12 @@ class Ui_LogIn(object):
         self.onlineUser.createUsersPayments()
         self.onlineUser.createUsersAccounts()
         self.onlineUser.createUsersCredit()
-
         self.BMSPage(self.onlineUser)
-        
-        
 
-
-######################### SAYFA DÜZENİ ###########################
+    ######################### SAYFA DÜZENİ ###########################
 #Pyuic5 generator ile otomatik oluşturulmuştur.
                    
-    #Giris sayfası yapısı    
+    #Giris sayfası yapısı      
     def setupUi(self, LOGIN):
         LOGIN.setObjectName("LOGIN")
         LOGIN.setEnabled(True)
@@ -86,6 +76,7 @@ class Ui_LogIn(object):
         LOGIN.setStyleSheet("background-color: rgb(49, 49, 49);")
         self.centralwidget = QtWidgets.QWidget(LOGIN)
         self.centralwidget.setStyleSheet("background-color: rgb(49, 49, 49);")
+        self.centralwidget.setInputMethodHints(QtCore.Qt.ImhNone)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(50, 10, 401, 31))
@@ -150,10 +141,29 @@ class Ui_LogIn(object):
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(-10, 50, 511, 301))
         self.label_2.setStyleSheet("background-color: rgb(49, 49, 49);")
+        self.centralwidget.setInputMethodHints(QtCore.Qt.ImhNone)
         self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap("../FOTO/security-icon-information-10.png"))
+        self.label_2.setPixmap(QtGui.QPixmap("../ICONS/security-icon-information-10.png"))
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(420, 320, 61, 61))
+        self.pushButton_2.setStyleSheet("color: rgb(255, 255, 255);")
+        self.pushButton_2.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../ICONS/photo.jpeg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_2.setIcon(icon)
+        self.pushButton_2.setIconSize(QtCore.QSize(99, 62))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(420, 320, 61, 61))
+        self.pushButton_2.setStyleSheet("color: rgb(255, 255, 255);")
+        self.pushButton_2.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../ICONS/photo.jpeg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_2.setIcon(icon)
+        self.pushButton_2.setIconSize(QtCore.QSize(99, 62))
+        self.pushButton_2.setObjectName("pushButton_2")
         self.label.raise_()
         self.label_2.raise_()
         self.label_3.raise_()
@@ -163,6 +173,7 @@ class Ui_LogIn(object):
         self.pushButton.raise_()
         self.label_5.raise_()
         self.commandLinkButton.raise_()
+        self.pushButton_2.raise_()
         LOGIN.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(LOGIN)
         self.statusbar.setObjectName("statusbar")
@@ -177,7 +188,6 @@ class Ui_LogIn(object):
         self.lineEdit_2.returnPressed.connect(self.authentication)
         self.commandLinkButton.clicked.connect(self.LoginPage)
         self.pushButton.clicked.connect(self.authentication)
-
 
     def retranslateUi(self, LOGIN):
         _translate = QtCore.QCoreApplication.translate
